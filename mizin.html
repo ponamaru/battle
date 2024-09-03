@@ -28,7 +28,7 @@
 
 }
 #select {
-	  color: blue;
+	  color: white;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -62,10 +62,22 @@
 html, body {
     overflow: hidden;
 }
+ #triangle {
+     width: 0;
+         	position: absolute;
+    top: 70;
+	left: 10;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid lightblue;
+     transform: scale(-1, 1);
+     border-bottom: 20px solid transparent;
+ }
     </style>
 </head>
 <div id="square"></div>
 <div id="square2"></div>
+<div id="triangle"></div>
 <div id="select">たたかう</div><div id="select2">にげる</div>
 <div id="area" class="typing-animation"></div>
 
@@ -74,33 +86,81 @@ var nowtext = 0;
 var UI = 1;
 var array = ['スライムが現れた', 'どうする？', 'I must not leave food on the plate.',''];
 var selections = 0;
+var decide = 1;
 type();
+document.getElementById( 'triangle' ).style.display = 'none'; 
 document.getElementById( 'select' ).style.display = 'none'; 
 document.getElementById( 'select2' ).style.display = 'none'; 
-addEventListener( "keydown", a );   
+document.getElementById( 'select2' ).style.top = 600; 
+document.getElementById( 'select2' ).style.left = 750; 
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'area' ).style.left = 550;
+document.getElementById( 'select' ).style.top = 600; 
+document.getElementById( 'select' ).style.left = 550; 
+document.getElementById( 'triangle' ).style.top = 600; 
+document.getElementById( 'triangle' ).style.left = 500; 
+    
+addEventListener( "keydown", a );  
+addEventListener( "keydown", b ); 
+    
     function a () {
         	var key_code = event.keyCode;
   const conds = document.getElementById("area").innerText;
 const textLS = conds.includes(array[nowtext]);
 if( key_code === 90 ) {
 if (textLS === true){
-nowtext = nowtext + 1;
+if(UI < 3)nowtext = nowtext + 1;
 document.getElementById("area").innerText = null;
 type();
-if(nowtext === 2)
+if(nowtext === 1){
 UI = 2;
 selections = 2;
 document.getElementById( 'area' ).style.top = 500;
 document.getElementById( 'select' ).style.display = 'block'; 
-document.getElementById( 'select' ).style.top = 600; 
-document.getElementById( 'select' ).style.left = 550; 
 document.getElementById( 'select2' ).style.display = 'block'; 
-document.getElementById( 'select2' ).style.top = 600; 
-document.getElementById( 'select2' ).style.left = 700; 
-}
+document.getElementById( 'triangle' ).style.display = 'block'; 
 
 }
+if(nowtext === 2) {
+if(decide === 1) {
+if(document.getElementById("select").innerText === 'たたかう') {
+document.getElementById("select").innerText = 'こうげき';
+document.getElementById("select2").innerText = 'アイテム';
+document.getElementById( 'area' ).style.display = 'none'; 
 }
+if(document.getElementById("select").innerText === 'こうげき') {
+document.getElementById( 'area' ).style.display = 'block'; 
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+}
+}
+if(decide === 2) {
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'area' ).style.display = 'none'; 
+}
+ }  
+}
+}
+}
+
+function b() {
+var key_code = event.keyCode;
+if(key_code === 39) {
+if(UI === 2) {
+decide = 2;
+document.getElementById( 'triangle' ).style.left = 700; 
+}
+}
+if(key_code === 37) {
+if(UI === 2) {
+decide = 1;
+document.getElementById( 'triangle' ).style.left = 500; 
+}
+}
+}
+
 function type () {
 const typing = (el, sentence) => {
 　　 //文字列を１文字ずつ取り出して処理を実行する
