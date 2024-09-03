@@ -19,6 +19,7 @@
 }
 
 #area {
+display: block;
 	  color: #FFF;
 	position: absolute;
 	top: 0;
@@ -73,6 +74,7 @@ html, body {
      transform: scale(-1, 1);
      border-bottom: 20px solid transparent;
  }
+
     </style>
 </head>
 <div id="square"></div>
@@ -83,8 +85,11 @@ html, body {
 
 <script>
 var nowtext = 0;
+var random = Math.floor( Math.random() * 31 ) + 30;
+var random2 = Math.floor( Math.random() * 21 ) + 20;
 var UI = 1;
-var array = ['スライムが現れた', 'どうする？', 'I must not leave food on the plate.',''];
+var array = ['スライムが現れた', 'どうする？', 'あなたはこうげきした。','スライムに' + random + 'ダメージ','スライムのこうげき',
+'あなたに' + random2 + 'ダメージ'];
 var selections = 0;
 var decide = 1;
 type();
@@ -99,6 +104,8 @@ document.getElementById( 'select' ).style.top = 600;
 document.getElementById( 'select' ).style.left = 550; 
 document.getElementById( 'triangle' ).style.top = 600; 
 document.getElementById( 'triangle' ).style.left = 500; 
+document.getElementById( 'area' ).style.display = 'block';
+document.getElementById( 'square' ).style.width = 200 + "px";
     
 addEventListener( "keydown", a );  
 addEventListener( "keydown", b ); 
@@ -107,13 +114,23 @@ addEventListener( "keydown", b );
         	var key_code = event.keyCode;
   const conds = document.getElementById("area").innerText;
 const textLS = conds.includes(array[nowtext]);
+const textLS2 = conds.includes('スライムのこうげき');
+  const seIn = document.getElementById("select").innerText;
+const sei2 = seIn.includes('たたかう');
+const sei1 = seIn.includes('こうげき');
+const areaC = document.getElementById( 'area' );
+const areadisplay = areaC.style.display === 'block';
 if( key_code === 90 ) {
+if (textLS2 === true){
+document.getElementById( 'square' ).style.width -= random2 + 'px';
+}
 if (textLS === true){
-if(UI < 3)nowtext = nowtext + 1;
+if(document.getElementById( 'area' ).style.display === 'block'){
+nowtext = nowtext + 1;
 document.getElementById("area").innerText = null;
 type();
+}
 if(nowtext === 1){
-UI = 2;
 selections = 2;
 document.getElementById( 'area' ).style.top = 500;
 document.getElementById( 'select' ).style.display = 'block'; 
@@ -123,16 +140,18 @@ document.getElementById( 'triangle' ).style.display = 'block';
 }
 if(nowtext === 2) {
 if(decide === 1) {
-if(document.getElementById("select").innerText === 'たたかう') {
+if(sei2 === true) {
 document.getElementById("select").innerText = 'こうげき';
 document.getElementById("select2").innerText = 'アイテム';
 document.getElementById( 'area' ).style.display = 'none'; 
 }
-if(document.getElementById("select").innerText === 'こうげき') {
+if(sei1 === true) {
 document.getElementById( 'area' ).style.display = 'block'; 
 document.getElementById( 'area' ).style.top = 600;
 document.getElementById( 'select' ).style.display = 'none'; 
 document.getElementById( 'select2' ).style.display = 'none'; 
+selections = 0;
+document.getElementById( 'triangle' ).style.display = 'none';
 }
 }
 if(decide === 2) {
@@ -147,14 +166,17 @@ document.getElementById( 'area' ).style.display = 'none';
 
 function b() {
 var key_code = event.keyCode;
+if(key_code === 40) {
+document.getElementById( 'square' ).style.width -= 10 + "px";
+}
 if(key_code === 39) {
-if(UI === 2) {
+if(selections === 2) {
 decide = 2;
 document.getElementById( 'triangle' ).style.left = 700; 
 }
 }
 if(key_code === 37) {
-if(UI === 2) {
+if(selections === 2) {
 decide = 1;
 document.getElementById( 'triangle' ).style.left = 500; 
 }
@@ -163,9 +185,9 @@ document.getElementById( 'triangle' ).style.left = 500;
 
 function type () {
 const typing = (el, sentence) => {
-　　 //文字列を１文字ずつ取り出して処理を実行する
+　　 
     [...sentence].forEach((char, index) => {
-　　　//0.1秒ごとに文字を出力する
+　　　
       setTimeout(() => {
         document.querySelector(el).textContent += char;
       }, 25 * ++index);
