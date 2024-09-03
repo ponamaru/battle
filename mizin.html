@@ -84,11 +84,13 @@ html, body {
 <div id="area" class="typing-animation"></div>
 
 <script>
+var hp = 200;
+var damage = random2;
 var nowtext = 0;
 var random = Math.floor( Math.random() * 31 ) + 30;
 var random2 = Math.floor( Math.random() * 21 ) + 20;
 var UI = 1;
-var array = ['スライムが現れた', 'どうする？', 'あなたはこうげきした。','スライムに' + random + 'ダメージ','スライムのこうげき',
+var array = ['スライムが現れた', 'どうする？', 'あなたはこうげきした。','スライムに' + random2 + 'ダメージ','スライムのこうげき',
 'あなたに' + random2 + 'ダメージ'];
 var selections = 0;
 var decide = 1;
@@ -119,10 +121,14 @@ const textLS2 = conds.includes('スライムのこうげき');
 const sei2 = seIn.includes('たたかう');
 const sei1 = seIn.includes('こうげき');
 const areaC = document.getElementById( 'area' );
+
 const areadisplay = areaC.style.display === 'block';
 if( key_code === 90 ) {
 if (textLS2 === true){
-document.getElementById( 'square' ).style.width -= random2 + 'px';
+const sq = document.getElementById( 'square2' );
+hp = hp - random2;
+sq.style.width = hp;
+sq.style.height = hp;
 }
 if (textLS === true){
 if(document.getElementById( 'area' ).style.display === 'block'){
@@ -166,8 +172,10 @@ document.getElementById( 'area' ).style.display = 'none';
 
 function b() {
 var key_code = event.keyCode;
-if(key_code === 40) {
-document.getElementById( 'square' ).style.width -= 10 + "px";
+if(key_code === 65) {
+const sq = document.getElementById( 'square' );
+sq.style.width = hp;
+document.getElementById( 'square' ).style.height -= '50px';
 }
 if(key_code === 39) {
 if(selections === 2) {
