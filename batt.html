@@ -1,0 +1,338 @@
+<html>
+<head>
+    <style>
+.typing-animation::after {
+  content: '';
+  border-right: 1px solid #333;
+  margin-left: 2px;
+  animation: flashing 1s linear infinite;
+  opacity: 0;
+}
+
+@keyframes flashing {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#area {
+display: block;
+	  color: #FFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+
+}
+#select {
+	  color: white;
+	position: absolute;
+	top: 0;
+	left: 0;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select2 {
+	  color: #FFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select3 {
+	  color: #FFF;
+	position: absolute;
+	top: 600;
+	left: 950;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#square {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square2 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+html, body {
+    overflow: hidden;
+}
+ #triangle {
+     width: 0;
+         	position: absolute;
+    top: 70;
+	left: 10;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid lightblue;
+     transform: scale(-1, 1);
+     border-bottom: 20px solid transparent;
+ }
+#hp {
+    	position: absolute;
+    top: 80;
+	left: 20;
+}
+#mp {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+    </style>
+</head>
+<div id="square"></div><div id="square-boder"></div>
+<div id="square2"></div>
+<div id="triangle"></div>
+<div id="hp">HP:200</div>
+<div id="mp">MP:200</div>
+<div id="select">たたかう</div><div id="select2">にげる</div><div id="select3">スキル</div>
+
+<div id="area" class="typing-animation"></div>
+
+<script>
+var hp = 200;
+var mp = 200;
+var myturn = true;
+var damage = random2;
+var nowtext = 0;
+var random = Math.floor( Math.random() * 31 ) + 30;
+var random2 = Math.floor( Math.random() * 21 ) + 20;
+var carsolX = 500;
+var carsolY = 600;
+var UI = 1;
+var array = ['スライムが現れた', 'どうする？', 'あなたはこうげきした。','スライムに' + random2 + 'ダメージ','スライムのこうげき' + 
+'あなたに' + random2 + 'ダメージ'];
+var skillIntro = ['敵に小ダメージ(消費MP:10)','敵に中ダメージ(消費MP:15)','敵に大ダメージ(消費MP:20)'];
+var itemIntro = ['MPを回復(3個)','HPを回復(3個)','敵に小ダメージ(1個)'];
+var selections = 0;
+var decide = 1;
+type();
+document.getElementById( 'triangle' ).style.display = 'none'; 
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.top = 600; 
+document.getElementById( 'select2' ).style.left = 750; 
+document.getElementById( 'select3' ).style.display = 'none'; 
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'area' ).style.left = 550;
+document.getElementById( 'select' ).style.top = 600; 
+document.getElementById( 'select' ).style.left = 550;  
+document.getElementById( 'area' ).style.display = 'block';
+document.getElementById( 'square' ).style.width = 200 + "px";
+    
+function carsol() {
+document.getElementById( 'triangle' ).style.top = carsolY; 
+document.getElementById( 'triangle' ).style.left = carsolX;
+}
+
+let intervalI = setInterval(carsol, 1);
+
+addEventListener( "keydown", a );  
+addEventListener( "keydown", b ); 
+    
+    function a () {
+        	var key_code = event.keyCode;
+  const conds = document.getElementById("area").innerText;
+const textLS = conds.includes(array[nowtext]);
+const textLS2 = conds.includes('スライムのこうげき');
+  const seIn = document.getElementById("select").innerText;
+const sei2 = seIn.includes('たたかう');
+const sei1 = seIn.includes('こうげき');
+const areaC = document.getElementById( 'area' );
+const sq2 = document.getElementById( 'square' );
+const yu = seIn.includes('友情');
+
+
+
+const areadisplay = areaC.style.display === 'block';
+if( key_code === 90 ) {
+if(textLS2 === true) {
+nowtext = 1;
+}
+if(myturn === false) {
+document.getElementById("area").innerText = null;
+nowtext = 4;
+type();
+if (textLS === true){
+if(document.getElementById( 'area' ).style.display === 'block'){
+nowtext = nowtext + 1;
+
+}
+
+}
+const sq = document.getElementById( 'square2' );
+hp = hp - random2;
+sq.style.width = hp;
+sq.style.height = hp;
+document.getElementById("hp").innerText = 'HP:' + hp;
+if (nowtext === 4){
+const sq = document.getElementById( 'square2' );
+hp = hp + random2;
+sq.style.width = hp;
+sq.style.height = hp;
+document.getElementById("hp").innerText = 'HP:' + hp;
+myturn = true;
+nowtext = 1;
+}
+}
+if(myturn === true) {
+if(yu === true) {
+document.getElementById("area").innerText = null;
+mp -= 20;
+sq2.style.width = mp;
+sq2.style.height = mp;
+document.getElementById("mp").innerText = 'MP:' + mp;
+document.getElementById( 'area' ).style.display = 'block';
+nowtext = 1;
+select = 0;
+nowtext = 3;
+document.getElementById( 'select' ).style.display = 'none';
+document.getElementById( 'select2' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'none'; 
+document.getElementById( 'triangle' ).style.display = 'none';
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById("select").innerText = null;
+type();
+}
+if (textLS2 === true){
+const sq = document.getElementById( 'square2' );
+hp = hp - random2;
+sq.style.width = hp;
+sq.style.height = hp;
+document.getElementById("hp").innerText = 'HP:' + hp;
+myturn = false;
+}
+if (textLS === true){
+if(document.getElementById( 'area' ).style.display === 'block'){
+nowtext = nowtext + 1;
+document.getElementById("area").innerText = null;
+type();
+}
+if(nowtext === 1){
+selections = 2;
+document.getElementById( 'area' ).style.top = 500;
+document.getElementById( 'select' ).style.display = 'block'; 
+document.getElementById( 'select2' ).style.display = 'block'; 
+document.getElementById( 'triangle' ).style.display = 'block'; 
+
+}
+if(nowtext === 2) {
+if(decide === 1) {
+if(sei2 === true) {
+document.getElementById("select").innerText = 'こうげき';
+document.getElementById("select2").innerText = 'アイテム';
+document.getElementById( 'area' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'block'; 
+selections = 3;
+}
+if(sei1 === true) {
+document.getElementById( 'area' ).style.display = 'block'; 
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'select3' ).style.display = 'none'; 
+selections = 0;
+document.getElementById( 'triangle' ).style.display = 'none';
+}
+}
+if(decide === 2) {
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'area' ).style.display = 'none'; 
+}
+if(decide === 3) {
+decide = 1;
+carsolX = 500;
+document.getElementById("select").innerText = '友情パワー';
+document.getElementById("select2").innerText = 'お色気攻撃';
+document.getElementById("select3").innerText = 'ファイア';
+document.getElementById( 'area' ).style.display = 'block'; 
+document.getElementById( 'area' ).style.top = 500;
+document.getElementById("area").innerText = skillIntro[decide - 1];
+}
+}
+
+ }  
+}
+}
+}
+
+function b() {
+var key_code = event.keyCode;
+  const seIn = document.getElementById("select").innerText;
+const yu = seIn.includes('友情');
+if(key_code === 65) {
+alert(myturn);
+
+}
+if(key_code === 39) {
+if(selections === 2) {
+decide = 2;
+carsolX = 700; 
+}
+}
+if(key_code === 37) {
+if(selections === 2) {
+decide = 1;
+carsolX = 500; 
+}
+}
+if(selections > 2) {
+if(key_code === 39) {
+if(selections > decide) {
+decide += 1;
+carsolX += 200; 
+if(yu === true) document.getElementById("area").innerText = skillIntro[decide - 1];
+}
+}
+if(key_code === 37) {
+if(1 < decide) {
+decide -= 1;
+carsolX -= 200; 
+if(yu === true) document.getElementById("area").innerText = skillIntro[decide - 1];
+}
+}
+
+}
+}
+
+function type () {
+const typing = (el, sentence) => {
+　　 
+    [...sentence].forEach((char, index) => {
+　　　
+      setTimeout(() => {
+        document.querySelector(el).textContent += char;
+      }, 25 * ++index);
+    });
+ }
+
+//関数を呼び出す
+typing('.typing-animation', array[nowtext]);
+    }
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'area' ).style.left = 550;
+</script>
+</html>
