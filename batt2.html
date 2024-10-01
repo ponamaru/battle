@@ -57,14 +57,14 @@ display: block;
     width: 200px;
     height: 200px;
     	position: absolute;
-    top: 70;
+    top: 550;
 	left: 10;
 }
 #square-boder {
     width: 199px;
     height: 199px;
     	position: absolute;
-    top: 70;
+    top: 550;
 	left: 10;
   border: 1px solid #000;
 }
@@ -73,7 +73,7 @@ display: block;
     width: 200px;
     height: 200px;
     	position: absolute;
-    top: 70;
+    top: 550;
 	left: 10;
 }
 html, body {
@@ -92,21 +92,31 @@ html, body {
  }
 #hp {
     	position: absolute;
-    top: 80;
+    top: 560;
 	left: 20;
 }
 #mp {
     	position: absolute;
-    top: 100;
+    top: 580;
 	left: 20;
+}
+body {
+  background-image: url("stage5.png");
+  background-size: cover;
+}
+#enemy1 {
+    	position: absolute;
+    top: 250;
+	left: 600;
 }
     </style>
 </head>
+<img id="enemy1" src="Slime_JE1.png">
 <div id="square"></div><div id="square-boder"></div>
 <div id="square2"></div>
 <div id="triangle"></div>
 <div id="hp">HP:200</div>
-<div id="mp">MP:200</div>
+<div id="mp">MP:100</div>
 <div id="select">たたかう</div><div id="select2">にげる</div><div id="select3">スキル</div>
 
 <div id="area" class="typing-animation"></div>
@@ -127,14 +137,15 @@ var carsolY = 650;
 var UI = 1;
 var itemNames = ['トマト','ドーナツ','ジュース']
 var array = ['スライムが現れた', 'どうする？','どうする？', 'あなたはこうげきした。','あなたのこうげき　スライムに' + random2 + 'ダメージ','スライムのこうげき　' + 
-'あなたに' + random2 + 'ダメージ','あなたのhpは20回復した','スライムを倒した','あなたは倒れた','あなたのmpは20回復した'];
+'あなたに' + random2 + 'ダメージ','あなたのhpは20回復した','スライムを倒した','あなたは倒れた','あなたのmpは20回復した','逃げるな'];
 var skillIntro = ['敵に小ダメージ(消費MP:10)','敵に中ダメージ(消費MP:15)','敵に大ダメージ(消費MP:20)'];
 var itemN = [3,3,1,];
-
-var itemIntro = ['HPを回復(' + itemN[0] + '個)','MPを回復(' + itemN[1] + '個)','敵に小ダメージ(' + itemN[2] + '個)'];
+var decide = 1;
+var itemIntro = ['HPを回復(' + itemN[decide - 1] + '個)','MPを回復(' + itemN[decide - 1] + '個)','敵に小ダメージ(' + itemN[decide - 1] + '個)'];
+var enemys = ['enemy1']
 
 var selections = 0;
-var decide = 1;
+
 type();
 document.getElementById( 'triangle' ).style.display = 'none'; 
 document.getElementById( 'select' ).style.display = 'none'; 
@@ -157,6 +168,7 @@ document.getElementById( 'triangle' ).style.top = carsolY;
 document.getElementById( 'triangle' ).style.left = carsolX;
 if(yu === true) document.getElementById("area").innerText = skillIntro[decide - 1];
 if(selectfun === 4) document.getElementById("area").innerText = itemIntro[decide - 1];
+itemIntro = ['HPを回復(' + itemN[decide - 1] + '個)','MPを回復(' + itemN[decide - 1] + '個)','敵に小ダメージ(' + itemN[decide - 1] + '個)'];
 const sq2 = document.getElementById( 'square' );
 sq2.style.width = mp * 2;
 sq2.style.height = mp * 2;
@@ -224,21 +236,25 @@ document.getElementById( 'triangle' ).style.display = 'block';
 
 if(nowtext === 2) {
 if(yu === true) {
-selections = 3;
+if(itemN.length < 1) selections = 2;
+if(itemN.length > 0) selections = 3;
 decide = 1;
 carsolX = 500;
 selectfun = 2;
 document.getElementById( 'select3' ).style.display = 'block'; 
+document.getElementById( 'select2' ).style.display = 'block'; 
 document.getElementById("select").innerText = 'こうげき';
 document.getElementById("select2").innerText = 'スキル';
 document.getElementById("select3").innerText = 'アイテム';
 }
-if(yu3 === true) {
-selections = 3;
-selectfun = 2;
+if((selectfun === 4)||(selectfun === 5)) {
+if(itemN.length < 1) selections = 2;
+if(itemN.length > 0) selections = 3;
 decide = 1;
+selectfun = 2;
 carsolX = 500;
 document.getElementById( 'select3' ).style.display = 'block'; 
+document.getElementById( 'select2' ).style.display = 'block'; 
 document.getElementById("select").innerText = 'こうげき';
 document.getElementById("select2").innerText = 'スキル';
 document.getElementById("select3").innerText = 'アイテム';
@@ -252,6 +268,7 @@ if(enemyHp < 1) {
 nowtext = 7;
 document.getElementById("area").innerText = null;
 type();
+document.getElementById( 'enemy1' ).style.display = 'none'; 
 } else {
 if(hp < 1) {
 nowtext = 8;
@@ -260,11 +277,12 @@ type();
 }else{ //when used items 
 
 if(selectfun === 4){
+selections = itemN.length;
 if(itemNames[decide - 1] === 'トマト'){
 nowcan = true;
 hpC();
-itemN[0] -= 1;
-itemIntro[decide - 1] = 'HPを回復(' + itemN[0] + '個)';
+itemN[decide - 1] -= 1;
+itemIntro[decide - 1] = 'HPを回復(' + itemN[decide - 1] + '個)';
 select0();
 document.getElementById( 'select' ).innerText = null;
 selectfun = 0;
@@ -274,8 +292,8 @@ type();
 }
 if(itemNames[decide - 1] === 'ドーナツ'){
 nowcan = true;
-itemN[1] -= 1;
-itemIntro[decide - 1] = 'MPを回復(' + itemN[1] + '個)';
+itemN[decide - 1] -= 1;
+itemIntro[decide - 1] = 'MPを回復(' + itemN[decide - 1] + '個)';
 mp += 20;
 document.getElementById("mp").innerText = 'MP:' + mp;
 select0();
@@ -287,8 +305,8 @@ type();
 }
 if(itemNames[decide - 1] === 'ジュース') {
 document.getElementById("select").innerText = null;
-itemN[2] -= 1;
-itemIntro[decide - 1] = '敵に小ダメージ(' + itemN[2] + '個)';
+itemN[decide - 1] -= 1;
+itemIntro[decide - 1] = '敵に小ダメージ(' + itemN[decide - 1] + '個)';
 random2 = Math.floor( Math.random() * 21) + 10;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
 enemyHp -= random2;
@@ -297,10 +315,10 @@ nowtext = 4;
 select0();
 document.getElementById("area").innerText = null;
 type();
-if(itemN[2] < 1) {
-itemN.splice( 2,1 );
-itemNames.splice( 2,1 );
-itemIntro.splice( 2,1 );
+if(itemN[decide - 1] < 1) {
+itemN.splice( decide - 1,1 );
+itemNames.splice( decide - 1,1 );
+itemIntro.splice( decide - 1,1 );
 selectfun = 0;
 }
 }
@@ -315,7 +333,7 @@ random2 = Math.floor( Math.random() * 21) + 10;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
 enemyHp -= random2;
 nowcan = true;
-mp -= 20;
+mp -= 10;
 document.getElementById("mp").innerText = 'MP:' + mp;
 document.getElementById("select").innerText = null;
 nowtext = 4;
@@ -335,7 +353,7 @@ random2 = Math.floor( Math.random() * 31) + 20;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
 enemyHp -= random2;
 nowcan = true;
-mp -= 20;
+mp -= 15;
 document.getElementById("mp").innerText = 'MP:' + mp;
 document.getElementById("select").innerText = null;
 nowtext = 4;
@@ -371,21 +389,40 @@ type();
 
 }
 }
+
+if(selectfun === 5) {
+random2 = Math.floor( Math.random() * 16 ) + 1;
+array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
+enemyHp -= Math.floor( Math.random() * 16 ) + 1;
+nowcan = true;
+nowtext = nowtext + 1;
+if(nowcan === true) {
+document.getElementById("area").innerText = null;
+type();
+}
+selections = 0;
+document.getElementById( 'select' ).style.display = 'none';
+document.getElementById( 'select2' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'none';
+document.getElementById( 'triangle' ).style.display = 'none';
+selectfun = 0;
+}
+
 if(textLS === true){
 if(nowtext === 6){
-if(itemN[0] < 1) {
-itemN.splice( 0,1 );
-itemNames.splice( 0,1 );
-itemIntro.splice( 0,1 );
+if(itemN[decide - 1] < 1) {
+itemN.splice( decide - 1,1 );
+itemNames.splice( decide - 1,1 );
+itemIntro.splice( decide - 1,1 );
 selectfun = 0;
 }
 nowtext = 4;
 }
 if(nowtext === 9){
-if(itemN[1] < 1) {
-itemN.splice( 1,1 );
-itemNames.splice( 1,1 );
-itemIntro.splice( 1,1 );
+if(itemN[decide - 1] < 1) {
+itemN.splice( decide - 1,1 );
+itemNames.splice( decide - 1,1 );
+itemIntro.splice( decide - 1,1 );
 selectfun = 0;
 }
 nowtext = 4;
@@ -394,9 +431,29 @@ if(nowtext === 4) {
 random2 = Math.floor( Math.random() * 16 ) + 1;
 array[5] = 'スライムのこうげき　あなたに' + random2 + 'ダメージ';
 damege();
+
 }
 if(nowtext === 5) {
 nowtext = 0;
+}
+if(nowtext === 10) {
+if(selectfun === 5) {
+random2 = Math.floor( Math.random() * 16 ) + 1;
+array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
+enemyHp -= Math.floor( Math.random() * 16 ) + 1;
+nowcan = true;
+nowtext = nowtext + 1;
+if(nowcan === true) {
+document.getElementById("area").innerText = null;
+type();
+}
+selections = 0;
+document.getElementById( 'select' ).style.display = 'none';
+document.getElementById( 'select2' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'none';
+document.getElementById( 'triangle' ).style.display = 'none';
+}
+
 }
 if(document.getElementById( 'area' ).style.display === 'block'){
 nowtext = nowtext + 1;
@@ -422,9 +479,10 @@ document.getElementById( 'select2' ).style.display = 'block';
 document.getElementById( 'triangle' ).style.display = 'block';
 }
 
-if(nowtext === 2) {
+if((nowtext === 2)||(nowtext === 10)) {
 if(decide === 1) {
-selections = 3;
+if(itemN.length < 1) selections = 2;
+if(itemN.length > 0) selections = 3;
 decide = 1;
 carsolX = 500;
 nowcan = false;
@@ -434,24 +492,26 @@ document.getElementById("select").innerText = 'こうげき';
 document.getElementById("select2").innerText = 'スキル';
 document.getElementById("select3").innerText = 'アイテム';
 }
+if(decide === 2) {
+nowcan = false;
+nowtext = 10;
+document.getElementById("area").innerText = null;
+type();
+
+}
 }
 
 if(nowtext === 3) {
+
 if(decide === 1) {
-random2 = Math.floor( Math.random() * 16 ) + 1;
-array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
-enemyHp -= Math.floor( Math.random() * 16 ) + 1;
-nowcan = true;
-nowtext = nowtext + 1;
-if(nowcan === true) {
-document.getElementById("area").innerText = null;
-type();
-}
-selections = 0;
-document.getElementById( 'select' ).style.display = 'none';
+
+if(selectfun === 2) {
+selections = 1;
 document.getElementById( 'select2' ).style.display = 'none';
 document.getElementById( 'select3' ).style.display = 'none';
-document.getElementById( 'triangle' ).style.display = 'none';
+document.getElementById("select").innerText = 'スライム';
+selectfun = 5;
+}
 }
 if(decide === 2) {
 decide = 1;
@@ -473,7 +533,7 @@ document.getElementById( 'select3' ).style.display = 'block';
 document.getElementById("select").innerText = itemNames[0];
 document.getElementById("select2").innerText = itemNames[1];
 document.getElementById("select3").innerText = itemNames[2];
-if(yu3 === true) document.getElementById("area").innerText = itemIntro[1];
+if(selectfun === 4) document.getElementById("area").innerText = itemIntro[0];
 }
 }
 
@@ -528,7 +588,7 @@ alert(nowtext);
 }
 if(key_code === 16) {
 
-alert(itemN[0]);
+alert(itemN[decide - 1]);
 }
 if(key_code === 39) {
 if(selections === 2) {
