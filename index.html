@@ -175,7 +175,7 @@ document.getElementById( 'triangle' ).style.top = carsolY;
 document.getElementById( 'triangle' ).style.left = carsolX;
 if(yu === true) document.getElementById("area").innerText = skillIntro[decide - 1];
 if(selectfun === 4) document.getElementById("area").innerText = itemIntro[decide - 1];
-itemIntro = ['HPを20回復(' + itemN[decide - 1] + '個)','MPを20回復(' + itemN[decide - 1] + '個)','敵に小ダメージ(' + itemN[decide - 1] + '個)'];
+itemIntro = ['HPを20回復(' + itemN[decide - 1] + '個)','MPを20回復(' + itemN[decide - 1] + '個)','全ての敵に小ダメージ(' + itemN[decide - 1] + '個)'];
 const sq2 = document.getElementById( 'square' );
 sq2.style.width = mp * 2;
 sq2.style.height = mp * 2;
@@ -320,7 +320,7 @@ type();
 if(itemNames[decide - 1] === 'ジュース') {
 document.getElementById("select").innerText = null;
 itemN[decide - 1] -= 1;
-itemIntro[decide - 1] = '敵に小ダメージ(' + itemN[decide - 1] + '個)';
+itemIntro[decide - 1] = '全ての敵に小ダメージ(' + itemN[decide - 1] + '個)';
 random2 = Math.floor( Math.random() * 21) + 10;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
 enemyHp -= random2;
@@ -342,6 +342,14 @@ selectfun = 0;
 if(textLS2 === true) { //when used skill
 if(decide === 1) {
 if(mp > 9) {
+if(seIn.includes('スライム') === false){
+selections = 1;
+document.getElementById( 'select2' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'none';
+carsolX = 500;
+document.getElementById("select").innerText = 'スライム(hp:' + enemyHp + ')' ;
+}
+if(seIn.includes('スライム') === true){
 const sq2 = document.getElementById( 'square' );
 random2 = Math.floor( Math.random() * 21) + 10;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
@@ -360,8 +368,17 @@ document.getElementById("area").innerText = null;
 type();
 }
 }
+}
 if(decide === 2) {
 if(mp > 14) {
+if(seIn.includes('スライム') === false){
+selections = 1;
+document.getElementById( 'select2' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'none';
+carsolX = 500;
+document.getElementById("select").innerText = 'スライム(hp:' + enemyHp + ')' ;
+}
+if(seIn.includes('スライム') === true){
 const sq2 = document.getElementById( 'square' );
 random2 = Math.floor( Math.random() * 31) + 20;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
@@ -380,8 +397,17 @@ document.getElementById("area").innerText = null;
 type();
 }
 }
+}
 if(decide === 3) {
 if(mp > 19) {
+if(seIn.includes('スライム') === false){
+selections = 1;
+document.getElementById( 'select2' ).style.display = 'none';
+document.getElementById( 'select3' ).style.display = 'none';
+document.getElementById("select").innerText = 'スライム(hp:' + enemyHp + ')' ;
+carsolX = 500;
+}
+if(seIn.includes('スライム') === true){
 const sq2 = document.getElementById( 'square' );
 random2 = Math.floor( Math.random() * 41) + 30;
 array[4] = 'あなたのこうげき　スライムに' + random2 + 'ダメージ';
@@ -398,6 +424,7 @@ document.getElementById( 'select3' ).style.display = 'none';
 document.getElementById( 'triangle' ).style.display = 'none';
 document.getElementById("area").innerText = null;
 type();
+}
 }
 }
 
