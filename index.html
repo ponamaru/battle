@@ -273,10 +273,12 @@ document.getElementById("select3").innerText = 'アイテム';
 }
 if(key_code === 90) {
 if(enemyHp < 1) {
+if(textLS === true) {
 nowtext = 7;
 document.getElementById("area").innerText = null;
 type();
 document.getElementById( 'enemy1' ).style.display = 'none'; 
+}
 } else {
 if(hp < 1) {
 if(textLS === true) {
