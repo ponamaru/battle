@@ -124,7 +124,7 @@ body {
 <div id="mp">MP:100</div>
 </div>
 <div id="triangle"></div>
-<div id="select">たたかう</div><div id="select2">にげる</div><div id="select3">スキル</div>
+<div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
 
 <div id="area" class="typing-animation"></div>
 <p>zキーで決定、xキーでキャンセル</p>
@@ -148,6 +148,10 @@ var key_code = event.keyCode;
     selectblock();
     selectfun = 1;
     }
+
+    if(selectfun === 1){
+if(decide === 1) {}
+        }
     }
     if( key_code === 88 ) {
     
@@ -175,7 +179,26 @@ typing('.typing-animation', array[nowtext]);
 type();
  function b () {
 var key_code = event.keyCode;
-if(slectfun === 3) {
+if(selectfun === 1) {
+	if( key_code === 38 ) {
+if(decide > 0) {
+        y1 -= 50;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
+    }
+    }
+	if( key_code === 40 ) {
+if(y1 < 600){ 
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+        }
+
+
+    
+    }
+if(selectfun === 3) {
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
