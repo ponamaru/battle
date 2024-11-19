@@ -19,45 +19,213 @@
 }
 
 #area {
-    	width: 200ch;	
+display: block;
+	  color: #FFF;
 	position: absolute;
 	top: 0;
 	left: 0;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+
+}
+#select {
+	  color: white;
+	position: absolute;
+	top: 500;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select2 {
+	  color: #FFF;
+	position: absolute;
+	top: 550;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select3 {
+	  color: #FFF;
+	position: absolute;
+	top: 600;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#hpmpUI {
+    	position: absolute;
+    top: 400;
+	left: 0;
+    }
+#square {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square2 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+html, body {
+    overflow: hidden;
+}
+ #triangle {
+     width: 0;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid lightblue;
+     transform: scale(-0.7, 0.7);
+     border-bottom: 20px solid transparent;
+ }
+#hp {
+    	position: absolute;
+    top: 80;
+	left: 20;
+}
+#mp {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+body {
+  background-image: url("stage5.png");
+  background-size: cover;
+}
+#enemy1 {
+    	position: absolute;
+    top: 250;
+	left: 600;
 }
     </style>
 </head>
-<div id="area" class="typing-animation"></div>
-<script>
-var nowtext = 0;
-var array = ['CCV BLOG...Sample Txt...', 'But I must eat this.', 'I must not leave food on the plate.',''];
-type();
-addEventListener( "keydown", a );   
-    function a () {
-        	var key_code = event.keyCode;
-  const conds = document.getElementById("area").innerText;
-const textLS = conds.includes(array[nowtext]);
-if( key_code === 90 ) {
-if (textLS === true){
-nowtext = nowtext + 1;
-document.getElementById("area").innerText = null;
-type();
-}
+<img id="enemy1" src="Slime_JE1.png">
+<div id="hpmpUI">
+<div id="square"></div><div id="square-boder"></div>
+<div id="square2"></div>
+<div id="hp">HP:200</div>
+<div id="mp">MP:100</div>
+</div>
+<div id="triangle"></div>
+<div id="select">たたかう</div><div id="select2">にげる</div><div id="select3">スキル</div>
 
-}
-}
+<div id="area" class="typing-animation"></div>
+<p>zキーで決定、xキーでキャンセル</p>
+<script>
+var selectfun = 0;
+var skillIntro = [1,1,1,2,2,2,null];
+var decide = 0;
+var nowtext = 0;
+var array = ["スライムが現れた","どうする?","",""];
+var y1 = 500;
+var selectOver = 1;
+
+addEventListener( "keydown", zx);
+function zx() {
+var key_code = event.keyCode;
+	if( key_code === 90 ) {
+    if(document.getElementById("area").innerText === array[0]) {
+    nowtext = 1;
+    nulltype();
+    document.getElementById( 'area' ).style.top = 400;
+    selectblock();
+    selectfun = 1;
+    }
+    }
+    if( key_code === 88 ) {
+    
+    }
+    }
+
+function nulltype() {
+document.getElementById("area").innerText = null;
+    type();
+    }
 function type () {
 const typing = (el, sentence) => {
-　　 //文字列を１文字ずつ取り出して処理を実行する
+　　 
     [...sentence].forEach((char, index) => {
-　　　//0.1秒ごとに文字を出力する
+　　　
       setTimeout(() => {
         document.querySelector(el).textContent += char;
-      }, 50 * ++index);
+      }, 25 * ++index);
     });
  }
 
-//関数を呼び出す
 typing('.typing-animation', array[nowtext]);
+    }
+
+type();
+ function b () {
+var key_code = event.keyCode;
+if(slectfun === 3) {
+	if( key_code === 38 ) {
+if(decide > 0) {
+if(y1 < 550) {
+        y1 = 600;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
+    }else{
+        y1 -= 50;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
+    }
+    }
+        }
+	if( key_code === 40 ) {
+if(skillIntro[decide + 1] === null){}else{ 
+    if(decide === selectOver * 3 - 1) {
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide += 1;
+        }else{
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+        }
+}   
+    }
+    }
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'area' ).style.left = 550;
+document.getElementById( 'triangle' ).style.top = 500;
+document.getElementById( 'triangle' ).style.left = 550;
+document.getElementById( 'triangle' ).style.display = 'none'; 
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'select3' ).style.display = 'none'; 
+
+addEventListener( "keydown", b);
+
+function selectblock() {
+document.getElementById( 'triangle' ).style.display = 'block'; 
+document.getElementById( 'select' ).style.display = 'block'; 
+document.getElementById( 'select2' ).style.display = 'block'; 
+document.getElementById( 'select3' ).style.display = 'block'; 
+    }
+function selectnone() {
+document.getElementById( 'triangle' ).style.display = 'none'; 
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'select3' ).style.display = 'none'; 
     }
 </script>
 </html>
