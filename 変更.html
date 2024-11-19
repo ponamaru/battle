@@ -154,10 +154,15 @@ typing('.typing-animation', array[nowtext]);
 var key_code = event.keyCode;
 	if( key_code === 38 ) {
 if(decide > 0) {
+if(y1 < 550) {
+        y1 = 600;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
+    }else{
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
-    
+    }
     }
         }
 	if( key_code === 40 ) {
