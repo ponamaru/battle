@@ -1,0 +1,181 @@
+<html>
+<head>
+    <style>
+.typing-animation::after {
+  content: '';
+  border-right: 1px solid #333;
+  margin-left: 2px;
+  animation: flashing 1s linear infinite;
+  opacity: 0;
+}
+
+@keyframes flashing {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#area {
+display: block;
+	  color: #FFF;
+	position: absolute;
+	top: 0;
+	left: 0;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+
+}
+#select {
+	  color: white;
+	position: absolute;
+	top: 500;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select2 {
+	  color: #FFF;
+	position: absolute;
+	top: 550;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#select3 {
+	  color: #FFF;
+	position: absolute;
+	top: 600;
+	left: 600;
+    font-size: 30;
+    background-color:rgba(0,0,0,0.5);
+}
+#hpmpUI {
+    	position: absolute;
+    top: 400;
+	left: 0;
+    }
+#square {
+        background-color:rgba(0,0,255,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+#square-boder {
+    width: 199px;
+    height: 199px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+  border: 1px solid #000;
+}
+#square2 {
+    background-color:rgba(255,0,0,0.5);
+    width: 200px;
+    height: 200px;
+    	position: absolute;
+    top: 70;
+	left: 10;
+}
+html, body {
+    overflow: hidden;
+}
+ #triangle {
+     width: 0;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 20px solid transparent;
+     border-right: 40px solid lightblue;
+     transform: scale(-0.7, 0.7);
+     border-bottom: 20px solid transparent;
+ }
+#hp {
+    	position: absolute;
+    top: 80;
+	left: 20;
+}
+#mp {
+    	position: absolute;
+    top: 100;
+	left: 20;
+}
+body {
+  background-image: url("stage5.png");
+  background-size: cover;
+}
+#enemy1 {
+    	position: absolute;
+    top: 250;
+	left: 600;
+}
+    </style>
+</head>
+<img id="enemy1" src="Slime_JE1.png">
+<div id="hpmpUI">
+<div id="square"></div><div id="square-boder"></div>
+<div id="square2"></div>
+<div id="hp">HP:200</div>
+<div id="mp">MP:100</div>
+</div>
+<div id="triangle"></div>
+<div id="select">たたかう</div><div id="select2">にげる</div><div id="select3">スキル</div>
+
+<div id="area" class="typing-animation"></div>
+<p>zキーで決定、xキーでキャンセル</p>
+<script>
+var selectfun = 0;
+var skillIntro = [1,1,1,null];
+var decide = 0;
+var nowtext = 0;
+    
+function type () {
+const typing = (el, sentence) => {
+　　 
+    [...sentence].forEach((char, index) => {
+　　　
+      setTimeout(() => {
+        document.querySelector(el).textContent += char;
+      }, 25 * ++index);
+    });
+ }
+typing('.typing-animation', array[nowtext]);
+    }
+    
+document.getElementById( 'area' ).style.top = 600;
+document.getElementById( 'area' ).style.left = 550;
+document.getElementById( 'triangle' ).style.top = 500;
+document.getElementById( 'triangle' ).style.left = 550;
+
+addEventListener( "keydown", a);
+
+function b () {
+var key_code = event.keyCode;
+	if( key_code === 38 ) {
+if(decide > -1) {
+    document.getElementById( 'triangle' ).style.top -= 50;
+    decide -= 1;
+    }
+        }
+	if( key_code === 40 ) {
+if(skillIntro[decide + 1] === null){}else{document.getElementById( 'triangle' ).style.top += 50; decide += 1;}
+        }
+}
+function a () {
+var key_code = event.keyCode;
+	if( key_code === 38 ) {
+    document.getElementById( 'triangle' ).style.top -= 50;
+    decide -= 1;
+        }
+	if( key_code === 40 ) {
+document.getElementById( 'triangle' ).style.top += 50; 
+        decide += 1;
+        }
+}
+</script>
+</html>
