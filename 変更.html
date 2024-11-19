@@ -136,7 +136,8 @@ var nowtext = 0;
 var array = [1,1];
 var y1 = 500;
 var selectOver = 1;
-    
+
+type();
 function type () {
 const typing = (el, sentence) => {
 　　 
@@ -147,11 +148,14 @@ const typing = (el, sentence) => {
       }, 25 * ++index);
     });
  }
+
 typing('.typing-animation', array[nowtext]);
     }
-    
+
+type();
  function b () {
 var key_code = event.keyCode;
+if(slectfun === 3) {
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
@@ -179,10 +183,15 @@ document.getElementById( 'triangle' ).style.top = y1;
         }
 }   
     }
+    }
 document.getElementById( 'area' ).style.top = 600;
 document.getElementById( 'area' ).style.left = 550;
 document.getElementById( 'triangle' ).style.top = 500;
 document.getElementById( 'triangle' ).style.left = 550;
+document.getElementById( 'triangle' ).style.display = 'none'; 
+document.getElementById( 'select' ).style.display = 'none'; 
+document.getElementById( 'select2' ).style.display = 'none'; 
+document.getElementById( 'select3' ).style.display = 'none'; 
 
 addEventListener( "keydown", b);
 
