@@ -178,7 +178,8 @@ var selectfun = 0;
 var skillIntro = [1,1,1,2,2,2,null];
 var decide = 0;
 var nowtext = 0;
-var array = ["スライムが現れた","どうする?","",""];
+var array = ["スライムが現れた","どうする?","どうする?",""];
+var enemyName = ["スライム","スライム",null,null,null];
 var y1 = 500;
 var selectOver = 1;
 
@@ -195,7 +196,14 @@ var key_code = event.keyCode;
     }
 
     if(selectfun === 1){
-if(decide === 1) {}
+if(document.getElementById("area").innerText === array[1]) {
+if(decide === 0) {
+    
+    document.getElementById("select").innerText = enemyName[0];
+document.getElementById("select2").innerText = enemyName[1];
+document.getElementById("select3").innerText = enemyName[2];
+        }
+        }
         }
     }
     if( key_code === 88 ) {
