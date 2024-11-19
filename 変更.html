@@ -130,9 +130,12 @@ body {
 <p>zキーで決定、xキーでキャンセル</p>
 <script>
 var selectfun = 0;
-var skillIntro = [1,1,1,null];
+var skillIntro = [1,1,1,2,2,2,null];
 var decide = 0;
 var nowtext = 0;
+var array = [1,1];
+var y1 = 500;
+var selectOver = 1;
     
 function type () {
 const typing = (el, sentence) => {
@@ -147,35 +150,36 @@ const typing = (el, sentence) => {
 typing('.typing-animation', array[nowtext]);
     }
     
+ function b () {
+var key_code = event.keyCode;
+	if( key_code === 38 ) {
+if(decide > 0) {
+        y1 -= 50;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
+    
+    }
+        }
+	if( key_code === 40 ) {
+if(skillIntro[decide + 1] === null){}else{ 
+    if(decide === selectOver * 3 - 1) {
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide += 1;
+        }else{
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+        }
+}   
+    }
 document.getElementById( 'area' ).style.top = 600;
 document.getElementById( 'area' ).style.left = 550;
 document.getElementById( 'triangle' ).style.top = 500;
 document.getElementById( 'triangle' ).style.left = 550;
 
-addEventListener( "keydown", a);
+addEventListener( "keydown", b);
 
-function b () {
-var key_code = event.keyCode;
-	if( key_code === 38 ) {
-if(decide > -1) {
-    document.getElementById( 'triangle' ).style.top -= 50;
-    decide -= 1;
-    }
-        }
-	if( key_code === 40 ) {
-if(skillIntro[decide + 1] === null){}else{document.getElementById( 'triangle' ).style.top += 50; decide += 1;}
-        }
-}
-function a () {
-var key_code = event.keyCode;
-	if( key_code === 38 ) {
-    document.getElementById( 'triangle' ).style.top -= 50;
-    decide -= 1;
-        }
-	if( key_code === 40 ) {
-document.getElementById( 'triangle' ).style.top += 50; 
-        decide += 1;
-        }
-}
 </script>
 </html>
