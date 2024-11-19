@@ -176,6 +176,7 @@ body {
 <script>
 var selectfun = 0;
 var skillIntro = [1,1,1,2,2,2,null];
+var itemIntro = [1,1,1,2,2,2,null];
 var decide = 0;
 var nowtext = 0;
 var array = ["スライムが現れた","どうする?","どうする?",""];
@@ -198,11 +199,20 @@ var key_code = event.keyCode;
     if(selectfun === 1){
 if(document.getElementById("area").innerText === array[1]) {
 if(decide === 0) {
-    
     document.getElementById("select").innerText = enemyName[0];
 document.getElementById("select2").innerText = enemyName[1];
 document.getElementById("select3").innerText = enemyName[2];
         }
+if(decide === 1) {
+    selectfun = 3;
+        decide = 0;
+        y1 = 600;
+    document.getElementById( 'triangle' ).style.top = y1;
+    document.getElementById("select").innerText = skillIntro[0];
+document.getElementById("select2").innerText = skillIntro[1];
+document.getElementById("select3").innerText = skillIntro[2];
+        }
+    
         }
         }
     }
@@ -258,6 +268,9 @@ if(y1 < 550) {
         y1 = 600;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
+    document.getElementById("select").innerText = skillIntro[decide];
+document.getElementById("select2").innerText = skillIntro[decide + 1];
+document.getElementById("select3").innerText = skillIntro[decide + 2];
     }else{
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -271,6 +284,9 @@ if(skillIntro[decide + 1] === null){}else{
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     decide += 1;
+        document.getElementById("select").innerText = skillIntro[decide];
+document.getElementById("select2").innerText = skillIntro[decide + 1];
+document.getElementById("select3").innerText = skillIntro[decide + 2];
         }else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
