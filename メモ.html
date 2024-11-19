@@ -151,11 +151,16 @@ body {
 #enemy1 {
     	position: absolute;
     top: 250;
-	left: 600;
+	left: 400;
+}
+#enemy2 {
+    	position: absolute;
+    top: 250;
+	left: 800;
 }
     </style>
 </head>
-<img id="enemy1" src="Slime_JE1.png">
+<img id="enemy1" src="Slime_JE1.png"> <img id="enemy2" src="Slime_JE1.png">
 <div id="hpmpUI">
 <div id="square"></div><div id="square-boder"></div>
 <div id="square2"></div>
@@ -169,25 +174,38 @@ body {
 <div id="mp2">MP:100</div>
 </div>
 <div id="triangle"></div>
+<div id="fun">MP:100</div>
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
 
 <div id="area" class="typing-animation"></div>
 <p>zキーで決定、xキーでキャンセル</p>
 <script>
 var selectfun = 0;
-var skillIntro = [1,1,1,2,2,2,null];
-var itemIntro = [1,1,1,2,2,2,null];
+var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル5","スキル6",null];
+var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var decide = 0;
 var nowtext = 0;
-var array = ["スライムが現れた","どうする?","どうする?",""];
+var array = ["スライムが現れた","どうする?","どうする?","行動した","たかしは",""];
 var enemyName = ["スライム","スライム",null,null,null];
+var enemyHp = [100,100,null,null,null];
 var y1 = 500;
 var selectOver = 1;
+var attaker = 0; var sc = false;
+var action = [null,null,null,null];
+var friend = ["takashi","hana","bob","uh"]
+
+function carsol() {
+document.getElementById("fun").innerText = action;
+}
+
+let intervalI = setInterval(carsol, 1);
 
 addEventListener( "keydown", zx);
 function zx() {
 var key_code = event.keyCode;
+
 	if( key_code === 90 ) {
+
     if(document.getElementById("area").innerText === array[0]) {
     nowtext = 1;
     nulltype();
@@ -199,27 +217,115 @@ var key_code = event.keyCode;
     if(selectfun === 1){
 if(document.getElementById("area").innerText === array[1]) {
 if(decide === 0) {
+if(document.getElementById("area").innerText === array[nowtext])selectfun = 2;
+        decide = 0;
+ window.setTimeout(sct,100);
     document.getElementById("select").innerText = enemyName[0];
 document.getElementById("select2").innerText = enemyName[1];
 document.getElementById("select3").innerText = enemyName[2];
         }
 if(decide === 1) {
-    selectfun = 3;
+    if(document.getElementById("area").innerText === array[nowtext])selectfun = 3;
         decide = 0;
-        y1 = 600;
+ window.setTimeout(sct, 100);
+        y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     document.getElementById("select").innerText = skillIntro[0];
 document.getElementById("select2").innerText = skillIntro[1];
 document.getElementById("select3").innerText = skillIntro[2];
         }
-    
+    if(decide === 2) {
+    if(document.getElementById("area").innerText === array[nowtext])selectfun = 4;
+ window.setTimeout(sct, 100);
+        decide = 0;
+        y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+    document.getElementById("select").innerText = itemIntro[0];
+document.getElementById("select2").innerText = itemIntro[1];
+document.getElementById("select3").innerText = itemIntro[2];
         }
+        
         }
     }
+if(sc === true) {
+    if(selectfun === 2){
+action[attaker] = enemyName[decide];
+}
+    if(selectfun === 3){
+action[attaker] = skillIntro[decide];
+}
+    if(selectfun === 4){
+action[attaker] = itemIntro[decide];
+}
+}
+if(selectfun === 6){ //攻撃反映、すでに攻撃対象がタヒんでいる場合
+attacker = 0;
+if(attaker < 2){
+if(enemyName.includes(action[attaker])=== true) {
+array[4] = friend[attaker] + "の攻撃";
+}else{
+array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
+}
+attaker += 1;
+nowtext = 4;
+}else{
+selectfun = 1;
+selectnone();
+attaker = 0;
+document.getElementById( 'area' ).style.top = 400;
+nowtext = 1;
+    document.getElementById("select").innerText = "こうげき";
+document.getElementById("select2").innerText = "スキル";
+document.getElementById("select3").innerText = "アイテム";
+selectblock();
+}
+nulltype();
+}
+if(sc === true) {
+    if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
+sc = false;         decide = 0;
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+if(attaker < 1){
+
+attaker += 1;
+    document.getElementById("select").innerText = "こうげき";
+document.getElementById("select2").innerText = "スキル";
+document.getElementById("select3").innerText = "アイテム";
+    nowtext = 1;
+    nulltype();
+    document.getElementById( 'area' ).style.top = 400;
+    selectblock();
+    selectfun = 1;
+}else{
+selectnone();
+attaker = 0;
+document.getElementById( 'area' ).style.top = 600;
+nowtext = 3;
+nulltype();
+selectfun = 6;
+}
+}
+}
+}
     if( key_code === 88 ) {
-    
+    if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
+if(document.getElementById("select").innerText === "こうげき"){
+attaker -= 1;
+}else{
+    document.getElementById("select").innerText = "こうげき";
+document.getElementById("select2").innerText = "スキル";
+document.getElementById("select3").innerText = "アイテム";
+    nowtext = 1;
+    nulltype();
+    document.getElementById( 'area' ).style.top = 400;
+    selectblock();
+    selectfun = 1;
+sc = false;
+}
     }
-    }
+}
+}
 
 function nulltype() {
 document.getElementById("area").innerText = null;
@@ -261,6 +367,18 @@ document.getElementById( 'triangle' ).style.top = y1;
 
     
     }
+if(selectfun === 2) {
+if( key_code === 38 ) {
+y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+decide = 0;
+}
+if( key_code === 40 ) {
+y1 = 550;
+    document.getElementById( 'triangle' ).style.top = y1;
+decide = 1;
+}
+}
 if(selectfun === 3) {
 	if( key_code === 38 ) {
 if(decide > 0) {
@@ -268,9 +386,9 @@ if(y1 < 550) {
         y1 = 600;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
-    document.getElementById("select").innerText = skillIntro[decide];
-document.getElementById("select2").innerText = skillIntro[decide + 1];
-document.getElementById("select3").innerText = skillIntro[decide + 2];
+    document.getElementById("select").innerText = skillIntro[decide - 2];
+document.getElementById("select2").innerText = skillIntro[decide - 1];
+document.getElementById("select3").innerText = skillIntro[decide];
     }else{
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -284,6 +402,7 @@ if(skillIntro[decide + 1] === null){}else{
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     decide += 1;
+document.getElementById( 'triangle' ).style.top = 500;
         document.getElementById("select").innerText = skillIntro[decide];
 document.getElementById("select2").innerText = skillIntro[decide + 1];
 document.getElementById("select3").innerText = skillIntro[decide + 2];
@@ -295,7 +414,46 @@ document.getElementById( 'triangle' ).style.top = y1;
         }
 }   
     }
+if(selectfun === 4) { //itemselect
+	if( key_code === 38 ) {
+if(decide > 0) {
+if(y1 < 550) {
+        y1 = 600;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
+    document.getElementById("select").innerText = itemIntro[decide - 2];
+document.getElementById("select2").innerText = itemIntro[decide - 1];
+document.getElementById("select3").innerText = itemIntro[decide];
+    }else{
+        y1 -= 50;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide -= 1;
     }
+    }
+        }
+	if( key_code === 40 ) {
+if(skillIntro[decide + 1] === null){}else{ 
+    if(decide === selectOver * 3 - 1) {
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+    decide += 1;
+document.getElementById( 'triangle' ).style.top = 500;
+        document.getElementById("select").innerText = itemIntro[decide];
+document.getElementById("select2").innerText = itemIntro[decide + 1];
+document.getElementById("select3").innerText = itemIntro[decide + 2];
+        }else{
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+        }
+}   
+    }
+    }
+
+function sct() {
+sc = true;
+}
 document.getElementById( 'area' ).style.top = 600;
 document.getElementById( 'area' ).style.left = 550;
 document.getElementById( 'triangle' ).style.top = 500;
