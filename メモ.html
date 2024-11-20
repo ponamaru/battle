@@ -186,7 +186,7 @@ var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4"
 var decide = 0;
 var nowtext = 0;
 var array = ["スライムが現れた","どうする?","どうする?","行動した","たかしは",""];
-var enemyName = ["スライム","スライム",null,null,null];
+var enemyName = ["スライム","スライム2",null,null,null];
 var enemyHp = [100,100,null,null,null];
 var y1 = 500;
 var selectOver = 1;
@@ -195,7 +195,7 @@ var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"]
 
 function carsol() {
-document.getElementById("fun").innerText = action;
+document.getElementById("fun").innerText = enemyHp;
 }
 
 let intervalI = setInterval(carsol, 1);
@@ -263,6 +263,7 @@ attacker = 0;
 if(attaker < 2){
 if(enemyName.includes(action[attaker])=== true) {
 array[4] = friend[attaker] + "の攻撃";
+enemyHp[enemyName.indexOf(action[attaker])] -= 1;
 }else{
 array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 }
