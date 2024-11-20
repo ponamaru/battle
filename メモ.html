@@ -193,10 +193,11 @@ var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"]
+var friendHp = [100,100,100,100]
 var attackE = 0;
 
 function carsol() {
-document.getElementById("fun").innerText = attaker;
+document.getElementById("fun").innerText = friendHp;
 }
 
 let intervalI = setInterval(carsol, 1);
