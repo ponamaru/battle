@@ -193,9 +193,10 @@ var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"]
+var attackE = 0;
 
 function carsol() {
-document.getElementById("fun").innerText = enemyHp;
+document.getElementById("fun").innerText = attaker;
 }
 
 let intervalI = setInterval(carsol, 1);
@@ -258,6 +259,17 @@ action[attaker] = skillIntro[decide];
 action[attaker] = itemIntro[decide];
 }
 }
+if(selectfun === 7){
+selectfun = 1;
+selectnone();
+attaker = 0;
+document.getElementById( 'area' ).style.top = 400;
+nowtext = 1;
+    document.getElementById("select").innerText = "こうげき";
+document.getElementById("select2").innerText = "スキル";
+document.getElementById("select3").innerText = "アイテム";
+selectblock();
+}
 if(selectfun === 6){ //攻撃反映、すでに攻撃対象がタヒんでいる場合
 attacker = 0;
 if(attaker < 2){
@@ -270,6 +282,11 @@ array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 attaker += 1;
 nowtext = 4;
 }else{
+if(attackE < 2){
+array[4] = enemyName[attackE] + "は攻撃した";
+attackE += 1;
+}else{
+attackE = 0;
 selectfun = 1;
 selectnone();
 attaker = 0;
@@ -279,6 +296,7 @@ nowtext = 1;
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
 selectblock();
+}
 }
 nulltype();
 }
