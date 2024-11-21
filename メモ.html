@@ -291,6 +291,7 @@ document.getElementById("select3").innerText = "アイテム";
 selectblock();
 }
 if(selectfun === 6){ //攻撃反映、すでに攻撃対象がタヒんでいる場合
+if(document.getElementById("area").innerText === array[nowtext]) {
 attacker = 0;
 if(attaker < Cfriend){
 if(enemyName.includes(action[attaker])=== true) {
@@ -337,8 +338,10 @@ selectblock();
 }
 nulltype();
 }
+}
 if(sc === true) {
     if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
+if(document.getElementById("area").innerText === array[nowtext]) {
 sc = false;         decide = 0;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -406,7 +409,7 @@ selectblock();
 }
 }
 nulltype();
-
+}
 }
 }
 }
