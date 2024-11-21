@@ -26,7 +26,10 @@ display: block;
 	left: 0;
     font-size: 30;
     background-color:rgba(0,0,0,0.5);
-
+white-space: pre;
+white-space: pre-wrap;
+white-space: pre-line;
+white-space: break-spaces;
 }
 #select {
 	  color: white;
@@ -195,7 +198,13 @@ var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"]
 var friendHp = [100,100,100,100]
 var attackE = 0;
+var fun = 0;
+var random = Math.floor( Math.random() * 31 ) + 0;
+var random2 = Math.floor( Math.random() * 2 ) + 0;
 
+
+const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
+    
 function carsol() {
 document.getElementById("fun").innerText = friendHp;
 }
@@ -207,7 +216,6 @@ function zx() {
 var key_code = event.keyCode;
 
 	if( key_code === 90 ) {
-
     if(document.getElementById("area").innerText === array[0]) {
     nowtext = 1;
     nulltype();
@@ -222,9 +230,15 @@ if(decide === 0) {
 if(document.getElementById("area").innerText === array[nowtext])selectfun = 2;
         decide = 0;
  window.setTimeout(sct,100);
-    document.getElementById("select").innerText = enemyName[0];
-document.getElementById("select2").innerText = enemyName[1];
-document.getElementById("select3").innerText = enemyName[2];
+    document.getElementById("select").innerText = enemyName[0] + " hp:"+ enemyHp[0];
+document.getElementById("select2").innerText = enemyName[1] + " hp:" + enemyHp[1];
+document.getElementById("select3").innerText = enemyName[2] + " hp:" + enemyHp[2];
+if(document.getElementById("select3").innerText.includes(null)) {
+document.getElementById( 'select3' ).style.display = 'none'; 
+    }
+if(document.getElementById("select2").innerText.includes(null)) {
+document.getElementById( 'select2' ).style.display = 'none'; 
+    }
         }
 if(decide === 1) {
     if(document.getElementById("area").innerText === array[nowtext])selectfun = 3;
@@ -275,8 +289,9 @@ if(selectfun === 6){ //攻撃反映、すでに攻撃対象がタヒんでいる
 attacker = 0;
 if(attaker < 2){
 if(enemyName.includes(action[attaker])=== true) {
-array[4] = friend[attaker] + "の攻撃";
-enemyHp[enemyName.indexOf(action[attaker])] -= 1;
+random = Math.floor( Math.random() * 31 ) + 0;
+enemyHp[enemyName.indexOf(action[attaker])] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
 }else{
 array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 }
@@ -284,7 +299,10 @@ attaker += 1;
 nowtext = 4;
 }else{
 if(attackE < 2){
-array[4] = enemyName[attackE] + "は攻撃した";
+random = Math.floor( Math.random() * 21 ) + 0;
+random2 = Math.floor( Math.random() * 2 ) + 0;
+friendHp[random2] -= random; //ダメージをくらう
+array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
 attackE += 1;
 }else{
 attackE = 0;
@@ -322,14 +340,49 @@ selectnone();
 attaker = 0;
 document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
-nulltype();
 selectfun = 6;
+attacker = 0;
+if(attaker < 2){
+if(enemyName.includes(action[attaker])=== true) {
+random = Math.floor( Math.random() * 31 ) + 0;
+enemyHp[enemyName.indexOf(action[attaker])] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
+}else{
+array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
+}
+attaker += 1;
+nowtext = 4;
+}else{
+if(attackE < 2){
+random = Math.floor( Math.random() * 21 ) + 0;
+random2 = Math.floor( Math.random() * 2 ) + 0;
+friendHp[random2] -= random; //ダメージをくらう
+array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
+attackE += 1;
+}else{
+attackE = 0;
+selectfun = 1;
+selectnone();
+attaker = 0;
+document.getElementById( 'area' ).style.top = 400;
+nowtext = 1;
+    document.getElementById("select").innerText = "こうげき";
+document.getElementById("select2").innerText = "スキル";
+document.getElementById("select3").innerText = "アイテム";
+selectblock();
+}
+}
+nulltype();
+
 }
 }
 }
 }
     if( key_code === 88 ) {
     if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
+                    y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
+        decide = 0;
 if(document.getElementById("select").innerText === "こうげき"){
 attaker -= 1;
 }else{
@@ -351,6 +404,7 @@ function nulltype() {
 document.getElementById("area").innerText = null;
     type();
     }
+    
 function type () {
 const typing = (el, sentence) => {
 　　 
