@@ -208,6 +208,10 @@ const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
     
 function carsol() {
 document.getElementById("fun").innerText = Cfriend + "and" + attaker;
+document.getElementById( 'square2' ).style.width = friendHp[0]*2;
+document.getElementById( 'square2' ).style.height = friendHp[0]*2;
+document.getElementById( 'square4' ).style.width = friendHp[1]*2;
+document.getElementById( 'square4' ).style.height = friendHp[1]*2;
 }
 
 let intervalI = setInterval(carsol, 1);
@@ -303,19 +307,19 @@ attaker += 1;
 nowtext = 4;
 }else{
 if(attackE < Cenemy){
-random = Math.floor( Math.random() * 101 ) + 0;
+random = Math.floor( Math.random() * 31 ) + 0;
 random2 = Math.floor( Math.random() * 2 ) + 0;
-    
+attackE += 1;
 if(friendHp[random2] < 1){
-if(friendHp[random2] + 1 < Cfriend) {
+if(friendHp[random2 +1] < Cfriend) {
 random2 -= 1;
 }else{
 random2 += 1;
     }
 }else{
 friendHp[random2] -= random; //ダメージをくらう
-array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
-attackE += 1;
+array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
+ 
 if(friendHp[random2] < 1)Cfriend -= 1;
     }
 }else{
@@ -382,7 +386,8 @@ random2 += 1;
     }
 }else{
 friendHp[random2] -= random; //ダメージをくらう
-array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
+array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";
+attaker = 0;    
 attackE += 1;
 if(friendHp[random2] < 1)Cfriend -= 1;
     }
