@@ -188,15 +188,16 @@ var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル
 var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var decide = 0;
 var nowtext = 0;
-var array = ["スライムが現れた","どうする?","どうする?","行動した","たかしは",""];
+var array = ["スライムが現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー"];
 var enemyName = ["スライム","スライム2",null,null,null];
 var enemyHp = [100,100,null,null,null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
-var friend = ["takashi","hana","bob","uh"]
-var friendHp = [100,100,100,100]
+var friend = ["takashi","hana","bob","uh"];
+var friendHp = [100,100,100,100];
+var friendMp = [100,100,100,100];
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
@@ -221,6 +222,11 @@ function zx() {
 var key_code = event.keyCode;
 
 	if( key_code === 90 ) {
+if(fun === 1) {
+nowtext = 5;
+nulltype();
+}
+if(fun === 0) {
     if(document.getElementById("area").innerText === array[0]) {
     nowtext = 1;
     nulltype();
@@ -317,11 +323,12 @@ random2 -= 1;
 }else{
 random2 += 1;
     }
-}else{
+}
+if(attaker > Cfriend -1){
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ"; 
- 
 if(friendHp[random2] < 1)Cfriend -= 1;
+if(Cfriend < 1) fun = 1;
     }
 }else{
 attackE = 0;
@@ -378,7 +385,7 @@ attaker += 1;
 nowtext = 4;
 }else{
 if(attackE < Cenemy){
-random = Math.floor( Math.random() * 21 ) + 0;
+random = Math.floor( Math.random() * 201 ) + 100;
 random2 = Math.floor( Math.random() * 2 ) + 0;
     
 if(friendHp[random2] < 1){
@@ -433,6 +440,7 @@ document.getElementById("select3").innerText = "アイテム";
 sc = false;
 }
     }
+}
 }
 }
 
