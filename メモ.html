@@ -188,7 +188,7 @@ var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル
 var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var decide = 0;
 var nowtext = 0;
-var array = ["スライムが現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー"];
+var array = ["スライムが現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
 var enemyName = ["スライム","スライム2",null,null,null];
 var enemyHp = [100,100,null,null,null];
 var y1 = 500;
@@ -224,6 +224,10 @@ var key_code = event.keyCode;
 	if( key_code === 90 ) {
 if(fun === 1) {
 nowtext = 5;
+nulltype();
+}
+if(fun === 2) {
+nowtext = 6;
 nulltype();
 }
 if(fun === 0) {
@@ -304,8 +308,9 @@ if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * 31 ) + 0;
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
-if(enemyName.indexOf(action[attaker]) > 1){
+if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
     Cenemy -= 1;
+if(Cenemy < 1)fun = 2;
     }
 }else{
 array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
@@ -375,7 +380,7 @@ if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * 31 ) + 0;
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
-if(enemyName.indexOf(action[attaker]) > 1){
+if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
     Cenemy -= 1;
     }
 }else{
