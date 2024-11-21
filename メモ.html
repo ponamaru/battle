@@ -307,14 +307,17 @@ random = Math.floor( Math.random() * 101 ) + 0;
 random2 = Math.floor( Math.random() * 2 ) + 0;
     
 if(friendHp[random2] < 1){
-random2 = Math.floor( Math.random() * 2 ) + 0;
+if(friendHp[random2] + 1 < Cfriend) {
+random2 -= 1;
+}else{
+random2 += 1;
+    }
 }else{
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
 attackE += 1;
-if(friendHp[random2] < random)Cfriend -= 1;
+if(friendHp[random2] < 1)Cfriend -= 1;
     }
-    
 }else{
 attackE = 0;
 selectfun = 1;
@@ -381,7 +384,7 @@ random2 += 1;
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
 attackE += 1;
-if(friendHp[random2] < random)Cfriend -= 1;
+if(friendHp[random2] < 1)Cfriend -= 1;
     }
     
 }else{
