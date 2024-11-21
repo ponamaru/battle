@@ -200,13 +200,14 @@ var friendHp = [100,100,100,100]
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
-var random2 = Math.floor( Math.random() * 2 ) + 0;
-
+var random2 = Math.floor( Math.random() * Cfriend ) + 0;
+var Cfriend = 2;
+var Cenemy = 2;
 
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
     
 function carsol() {
-document.getElementById("fun").innerText = friendHp;
+document.getElementById("fun").innerText = Cfriend;
 }
 
 let intervalI = setInterval(carsol, 1);
@@ -287,23 +288,33 @@ selectblock();
 }
 if(selectfun === 6){ //攻撃反映、すでに攻撃対象がタヒんでいる場合
 attacker = 0;
-if(attaker < 2){
+if(attaker < Cfriend){
 if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * 31 ) + 0;
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
+if(enemyName.indexOf(action[attaker]) > 1){
+    Cenemy -= 1;
+    }
 }else{
 array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 }
 attaker += 1;
 nowtext = 4;
 }else{
-if(attackE < 2){
-random = Math.floor( Math.random() * 21 ) + 0;
+if(attackE < Cenemy){
+random = Math.floor( Math.random() * 101 ) + 0;
 random2 = Math.floor( Math.random() * 2 ) + 0;
+    
+if(friendHp[random2] < 1){
+random2 = Math.floor( Math.random() * 2 ) + 0;
+}else{
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
 attackE += 1;
+if(friendHp[random2] < random)Cfriend -= 1;
+    }
+    
 }else{
 attackE = 0;
 selectfun = 1;
@@ -324,7 +335,7 @@ if(sc === true) {
 sc = false;         decide = 0;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
-if(attaker < 1){
+if(attaker < Cfriend - 1){
 
 attaker += 1;
     document.getElementById("select").innerText = "こうげき";
@@ -342,23 +353,37 @@ document.getElementById( 'area' ).style.top = 600;
 nowtext = 3;
 selectfun = 6;
 attacker = 0;
-if(attaker < 2){
+if(attaker < Cfriend){
 if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * 31 ) + 0;
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
+if(enemyName.indexOf(action[attaker]) > 1){
+    Cenemy -= 1;
+    }
 }else{
 array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 }
 attaker += 1;
 nowtext = 4;
 }else{
-if(attackE < 2){
+if(attackE < Cenemy){
 random = Math.floor( Math.random() * 21 ) + 0;
 random2 = Math.floor( Math.random() * 2 ) + 0;
+    
+if(friendHp[random2] < 1){
+if(friendHp[random2] + 1 < Cfriend) {
+random2 -= 1;
+}else{
+random2 += 1;
+    }
+}else{
 friendHp[random2] -= random; //ダメージをくらう
 array[4] = enemyName[attackE] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";    
 attackE += 1;
+if(friendHp[random2] < random)Cfriend -= 1;
+    }
+    
 }else{
 attackE = 0;
 selectfun = 1;
