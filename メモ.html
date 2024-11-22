@@ -352,7 +352,7 @@ array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 
 }else{
 enemyHp[0] -= random;
-array[4] = friend[attaker] + "の攻撃\n" + enemyHp[0] + "に" + random + "ダメージ";
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 }
 
 }
@@ -447,7 +447,7 @@ array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 
 }else{
 enemyHp[0] -= random;
-array[4] = friend[attaker] + "の攻撃\n" + enemyHp[0] + "に" + random + "ダメージ";
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 }
 
 }
@@ -517,13 +517,16 @@ if(decide > 0) {
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
+
     }
     }
 	if( key_code === 40 ) {
 if(y1 < 600){ 
+if(skillIntro[decide + 1] === null){}else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
+}
 }
         }
 
@@ -532,14 +535,18 @@ document.getElementById( 'triangle' ).style.top = y1;
     }
 if(selectfun === 2) {
 if( key_code === 38 ) {
+ 
 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
 decide = 0;
 }
+
 if( key_code === 40 ) {
+
 y1 = 550;
     document.getElementById( 'triangle' ).style.top = y1;
 decide = 1;
+
 }
 }
 if(selectfun === 3) {
@@ -553,14 +560,16 @@ if(y1 < 550) {
 document.getElementById("select2").innerText = skillIntro[decide - 1];
 document.getElementById("select3").innerText = skillIntro[decide];
     }else{
+
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
+
     }
     }
         }
 	if( key_code === 40 ) {
-if(skillIntro[decide + 1] === null){}else{ 
+ 
     if(decide === selectOver * 3 - 1) {
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -570,10 +579,12 @@ document.getElementById( 'triangle' ).style.top = 500;
 document.getElementById("select2").innerText = skillIntro[decide + 1];
 document.getElementById("select3").innerText = skillIntro[decide + 2];
         }else{
+if(skillIntro[decide + 1] === null){}else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
+
         }
 }   
     }
@@ -595,7 +606,7 @@ document.getElementById("select3").innerText = itemIntro[decide];
     }
         }
 	if( key_code === 40 ) {
-if(skillIntro[decide + 1] === null){}else{ 
+ 
     if(decide === selectOver * 3 - 1) {
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -612,7 +623,7 @@ document.getElementById( 'triangle' ).style.top = y1;
         }
 }   
     }
-    }
+    
 
 function sct() {
 sc = true;
