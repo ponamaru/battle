@@ -312,77 +312,13 @@ if(document.getElementById("area").innerText === array[nowtext]) {
 sc = false;         decide = 0;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
-if(attaker < Cfriend - 1){
+selectnone();
+    selectfun = 6;
+trunV();
 
-attaker += 1;
-    document.getElementById("select").innerText = "こうげき";
-document.getElementById("select2").innerText = "スキル";
-document.getElementById("select3").innerText = "アイテム";
-    nowtext = 1;
-    nulltype();
-    document.getElementById( 'area' ).style.top = 400;
-    selectblock();
-    selectfun = 1;
-}else{
-selectnone();
-attaker = 0;
-document.getElementById( 'area' ).style.top = 600;
-nowtext = 3;
-selectfun = 6;
-attacker = 0;
-if(attaker < Cfriend){
-if(friendHp[attaker] < 1)attaker += 1;
-if(enemyName.includes(action[attaker])=== true) {
-random = Math.floor( Math.random() * 31 ) + 0;
-enemyHp[enemyName.indexOf(action[attaker])] -= random;
-array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
-if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
-    Cenemy -= 1;
     }
-}else{
-array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 }
-attaker += 1;
-nowtext = 4;
-}else{
-if(attackE < Cenemy){
-random = Math.floor( Math.random() * 21 ) + 0;
-random2 = Math.floor( Math.random() * 2 ) + 0;
-    
-if(friendHp[random2] < 1){
-if(friendHp[random2] + 1 < Cfriend) {
-random2 -= 1;
-}else{
-random2 += 1;
-    }
-}else{
-friendHp[random2] -= random; //ダメージをくらう
-array[4] = enemyName[attackE - 1] + "は攻撃した\n" + friend[random2] + "に" + random + "ダメージ";
-attaker = 0;    
-attackE += 1;
-if(friendHp[random2] < 1)Cfriend -= 1;
-    }
-    
-}else{
-attackE = 0;
-selectfun = 1;
-selectnone();
-attaker = 0;
-document.getElementById( 'area' ).style.top = 400;
-nowtext = 1;
-    document.getElementById("select").innerText = "こうげき";
-document.getElementById("select2").innerText = "スキル";
-document.getElementById("select3").innerText = "アイテム";
-selectblock();
-}
-}
-nulltype();
-}
-}
-}
-}
-}
-}
+}}}
     if( key_code === 88 ) {
     if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
                     y1 = 500;
