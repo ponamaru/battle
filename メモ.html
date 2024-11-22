@@ -414,6 +414,14 @@ if(friendHp[attaker] < 1)attaker += 1;
 
 if(enemyName.includes(action[attaker])=== true) {
 random = Math.floor( Math.random() * 31 ) + 0;
+    
+if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
+if(enemyHp[enemyName.indexOf(action[attaker]) + 1] < Cfriend) {
+action[attaker] = enemyName[enemyName.indexOf(action[attaker]) - 1];
+}else{
+action[attaker] = enemyName[enemyName.indexOf(action[attaker]) + 1];
+    }
+}
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
 if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
