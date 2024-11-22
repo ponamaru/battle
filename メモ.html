@@ -209,7 +209,7 @@ var Cenemy = 2;
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
     
 function carsol() {
-document.getElementById("fun").innerText = Cfriend + "and" + attaker;
+document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + selectfun;
 document.getElementById( 'square2' ).style.width = friendHp[0]*2;
 document.getElementById( 'square2' ).style.height = friendHp[0]*2;
 document.getElementById( 'square4' ).style.width = friendHp[1]*2;
@@ -388,14 +388,16 @@ nulltype();
 }
 }
 }
+}
     if( key_code === 88 ) {
+if((selectfun === 1)&&(attaker > 0)) {
+attaker -= 1;
+nulltype();
+}
     if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
                     y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
         decide = 0;
-if(document.getElementById("select").innerText === "こうげき"){
-attaker -= 1;
-}else{
     document.getElementById("select").innerText = "こうげき";
 document.getElementById("select2").innerText = "スキル";
 document.getElementById("select3").innerText = "アイテム";
@@ -407,8 +409,7 @@ document.getElementById("select3").innerText = "アイテム";
 sc = false;
 }
     }
-}
-}
+
 }
 
 function trun() {
