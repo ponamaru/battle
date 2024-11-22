@@ -426,6 +426,9 @@ enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
 if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
     Cenemy -= 1;
+enemyName.splice( enemyName.indexOf(action[attaker]),1 );
+enemyHp.splice( enemyName.indexOf(action[attaker]),1 );
+enemyId.splice( enemyName.indexOf(action[attaker]),1 );
 document.getElementById( enemyId[enemyName.indexOf(action[attaker])] ).style.display = 'none'; 
 if(Cenemy < 1)fun = 2;
     }
