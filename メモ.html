@@ -200,7 +200,7 @@ var attaker = 0; var sc = false;
 var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"];
 var friendHp = [100,100,100,100];
-var friendMp = [100,100,100,100];
+var friendMp = [50,50,50,50];
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
@@ -554,9 +554,11 @@ document.getElementById( 'triangle' ).style.top = 500;
 document.getElementById("select2").innerText = itemIntro[decide + 1];
 document.getElementById("select3").innerText = itemIntro[decide + 2];
         }else{
+if(itemIntro[decide + 1] === null){}else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
+}
 }
         }
 }   
@@ -564,15 +566,19 @@ document.getElementById( 'triangle' ).style.top = y1;
     
 function skillItem() {
 if(action[attaker] === "アイテム1"){
+selectfun = 7;
+if(){
 friendHp[0] += 10;
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 itemE[itemIntro.indexOf(action[attaker])] = 'HPを回復(' + itemN[itemIntro.indexOf(action[attaker])] + '個)';
-if(itemN[decide] < 1) {
+if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
 itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
 }
+}
+
 }
 }
 
