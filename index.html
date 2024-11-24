@@ -311,9 +311,19 @@ position: absolute;
 top: 80;
 left: 20;
 }
+#cr {
+position: absolute;
+top: 450;
+left: 300;
+width: 200;
+height: 150;
+display: none;
+}
+   
     </style>
 </head>
 <img id="enemy1" class="op1" src="Slime_JE1.png"> <img class="op1" id="enemy2" src="Slime_JE1.png">
+<img id="cr" src="car.png">
 <div id="hpmpUI">
 <div id="square"></div><div id="square-boder"></div>
 <div id="square2"></div>
@@ -427,7 +437,12 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = Cfriend + "and" + target + "and" + friendMp[attaker] + "and" + action;
+document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + friendMp[attaker] + "and" + action;
+if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
+if(attaker === 3)document.getElementById( 'cr' ).style.src = "目.png";
+if(attaker === 2)document.getElementById( 'cr' ).style.src = "black.png";
+if(attaker === 1)document.getElementById( 'cr' ).style.src = "54.png";
+if(attaker === 0)document.getElementById( 'cr' ).style.src = "car.png";
 
 document.getElementById("hp").innerText = "HP:" + friendHp[0];
 document.getElementById("mp").innerText = "MP:" + friendMp[0];
@@ -553,7 +568,7 @@ nowtext = 3;
 selectfun = 6;
 attacker = 0;
 trun();
-
+document.getElementById( 'cr' ).style.display = 'none';
 }
 }
 }
