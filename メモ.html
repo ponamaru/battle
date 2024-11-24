@@ -98,6 +98,30 @@ html, body {
      transform: scale(-0.7, 0.7);
      border-bottom: 20px solid transparent;
  }
+ #triangleD {
+     width: 0;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 10px solid transparent;
+     border-right: 20px solid white;
+     transform: scale(-0.2, 0.2);
+     border-bottom: 10px solid transparent;
+transform:rotate(-90deg); 
+ }
+ #triangleU {
+     width: 0;
+         	position: absolute;
+    top: 0;
+	left: 0;
+     height: 0;
+     border-top: 10px solid transparent;
+     border-right: 20px solid white;
+     transform: scale(-0.2, 0.2);
+     border-bottom: 10px solid transparent;
+transform:rotate(90deg); 
+ }
 #hp {
     	position: absolute;
     top: 80;
@@ -161,6 +185,23 @@ body {
     top: 250;
 	left: 800;
 }
+
+      @keyframes floatingD {
+      0% {
+        transform: translateY(-1%);
+      }
+      100% {
+        transform: translateY(1%);
+      }
+}
+      @keyframes floatingU {
+      0% {
+        transform: translateY(1%);
+      }
+      100% {
+        transform: translateY(-1%);
+      }
+}
     </style>
 </head>
 <img id="enemy1" src="Slime_JE1.png"> <img id="enemy2" src="Slime_JE1.png">
@@ -176,7 +217,7 @@ body {
 <div id="hp2">HP:200</div>
 <div id="mp2">MP:100</div>
 </div>
-<div id="triangle"></div>
+<div id="triangle"></div><div class="tD" id="triangleD"></div><div class="tU"  id="triangleU"></div>
 <div id="fun">MP:100</div>
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
 
@@ -235,12 +276,21 @@ if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + "
 
 let intervalI = setInterval(carsol, 1);
 
+document.getElementById( 'triangleU' ).style.top = 470;
+document.getElementById( 'triangleU' ).style.left = 600;
+document.getElementById( 'triangleD' ).style.top = 650;
+document.getElementById( 'triangleD' ).style.left = 600;
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'none';
+
 addEventListener( "keydown", zx);
 function zx() {
 var key_code = event.keyCode;
 
 if( key_code === 65 )alert(friend[0] - "ta");
 	if( key_code === 90 ) {
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'none';
 if(fun === 1) {
 nowtext = 5;
 nulltype();
@@ -333,6 +383,7 @@ if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
     document.getElementById("select").innerText = skillIntro[0];
 document.getElementById("select2").innerText = skillIntro[1];
 document.getElementById("select3").innerText = skillIntro[2];
+document.getElementById( 'triangleD' ).style.display = 'block';
         }
     if(decide === 2) {
     if(document.getElementById("area").innerText === array[nowtext])selectfun = 4;
@@ -344,6 +395,7 @@ if(selectfun === 4)document.getElementById("area").innerText = itemE[decide];
     document.getElementById("select").innerText = itemIntro[0];
 document.getElementById("select2").innerText = itemIntro[1];
 document.getElementById("select3").innerText = itemIntro[2];
+document.getElementById( 'triangleD' ).style.display = 'block';
         }
         
         }
@@ -365,6 +417,8 @@ if(selectfun === 6){trun();} //攻撃反映、すでに攻撃対象がタヒん�
 }
 }
     if( key_code === 88 ) {
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'none';
 if((selectfun === 1)&&(attaker > 0)) {
 attaker -= 1;
 nulltype();
@@ -531,6 +585,8 @@ if(selectfun === 3) {
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
@@ -547,6 +603,8 @@ document.getElementById("select3").innerText = skillIntro[decide];
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
+document.getElementById( 'triangleU' ).style.display = 'block';
+document.getElementById( 'triangleD' ).style.display = 'none';
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     decide += 1;
@@ -580,6 +638,8 @@ if(selectfun === 4) { //itemselect
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
@@ -597,6 +657,8 @@ document.getElementById("select3").innerText = itemIntro[decide];
     if(decide === selectOver * 3 - 1) {
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
                 y1 = 500;
+document.getElementById( 'triangleU' ).style.display = 'block';
+document.getElementById( 'triangleD' ).style.display = 'none';
     document.getElementById( 'triangle' ).style.top = y1;
     decide += 1;
 document.getElementById( 'triangle' ).style.top = 500;
@@ -860,6 +922,8 @@ document.getElementById( 'triangle' ).style.display = 'none';
 document.getElementById( 'select' ).style.display = 'none'; 
 document.getElementById( 'select2' ).style.display = 'none'; 
 document.getElementById( 'select3' ).style.display = 'none'; 
+document.getElementById( 'triangleU' ).style.display = 'none';
+document.getElementById( 'triangleD' ).style.display = 'none';
     }
 </script>
 </html>
