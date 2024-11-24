@@ -643,7 +643,12 @@ decide = 0;
                 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
     action[attaker] += friend[decide];
-document.getElementById( 'select' ).innerText = friend[0] + "\n" + friend[1] + "\n" + friend[2] + "\n" + friend[3];
+aiful = 0;
+document.getElementById("select").innerText = null;
+for (let i = 0; aiful < Cfriend; i++) {
+aiful += 1;
+  document.getElementById( 'select' ).innerText += friend[aiful - 1] + "\n";
+}
 document.getElementById( 'select2' ).style.display = 'none'; 
 document.getElementById( 'select3' ).style.display = 'none'; 
 }else{
@@ -716,7 +721,12 @@ trun();
 if(skillIntro[decide] === "スキル2"){
 y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
-document.getElementById( 'select' ).innerText = friend[0] + "\n" + friend[1] + "\n" + friend[2] + "\n" + friend[3];
+aiful = -1;
+document.getElementById("select").innerText = null;
+for (let i = 0; aiful < Cfriend; i++) {
+aiful += 1;
+  document.getElementById( 'select' ).innerText += friend[aiful - 1] + "\n";
+}
 document.getElementById( 'select2' ).style.display = 'none'; 
 document.getElementById( 'select3' ).style.display = 'none'; 
 }else{
