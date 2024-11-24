@@ -274,9 +274,10 @@ body {
     animation:blink 0.5s ease-in-out infinite alternate;
 }
 .blinking2{
-	-webkit-animation:blink 0.2s ease-in-out infinite alternate;
-    -moz-animation:blink 0.2s ease-in-out infinite alternate;
-    animation:blink 0.2s ease-in-out infinite alternate;
+	-webkit-animation:blink 0.2s ease-in-out;
+    -moz-animation:blink 0.2s ease-in-out;
+    animation:blink 0.2s ease-in-out;
+animation-iteration-count: 2;
 }
 @-webkit-keyframes blink{
     0% {opacity:0;}
@@ -372,20 +373,25 @@ var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
 var random2 = Math.floor( Math.random() * Cfriend ) + 0;
-var Cfriend = 4;
+var Cfriend = 2;
 var Cenemy = 2;
 var aiful = 0;
 var aiOver = 0;
-const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
-    
+const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
+  
 function damageE() {
-  const element = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
-    element.classList.add("blinking2");
-window.setTimeout(damageE2,3000);
-}
-function damageE2() {
-const element = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
-element.classList.remove("blinking2");
+document.getElementById(enemyId[enemyName.indexOf(action[attaker])]).animate(
+	[
+		{ opacity: 1 },
+		{ opacity: 0 }
+	],
+	{
+		duration: 100,
+		easing: 'linear',
+		iterations: 4,
+		direction: 'alternate'
+	}
+);
 }
 
 function carsol() {
@@ -663,7 +669,7 @@ skillItem();
 }else{
 enemyHp[0] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
-damageE()
+damageE();
 }
 
 }
