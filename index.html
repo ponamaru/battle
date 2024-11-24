@@ -395,7 +395,7 @@ document.getElementById(enemyId[enemyName.indexOf(action[attaker])]).animate(
 }
 
 function carsol() {
-document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + friendMp[attaker] + "and" + action;
+document.getElementById("fun").innerText = Cfriend + "and" + target + "and" + friendMp[attaker] + "and" + action;
 
 document.getElementById("hp").innerText = "HP:" + friendHp[0];
 document.getElementById("mp").innerText = "MP:" + friendMp[0];
@@ -640,8 +640,6 @@ sc = false;
 }
 
 function trun() {
-attacker = 0;
-
 if(attaker < Cfriend){
 if(friendHp[attaker] < 1)attaker += 1;
 
@@ -666,6 +664,7 @@ enemyId.splice( aiful,1 );
 if((skillIntro.includes(action[attaker])===true)||(itemIntro.includes(action[attaker])===true)){
 array[4] = friend[attaker] + "は" + action[attaker] + "を使った";
 skillItem();
+
 }else{
 enemyHp[0] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
@@ -1094,7 +1093,6 @@ aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
 itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
-target[attaker] = null;
 }
 }
 if(action[attaker].includes("アイテム2")){ 
@@ -1106,14 +1104,22 @@ aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
 itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
-target[attaker] = null;
 }
 }
 if(action[attaker].includes("スキル4")){ 
-
-enemyHp[0] -= random;
-array[4] += "\n" + enemyName[0] + "に" + random + "ダメージ";
+random = Math.floor( Math.random() * 51 ) + 20;
+enemyHp[target[attaker]] -= random;
+array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
 friendMp[attaker] -= 5;
+if(enemyHp[target[attaker]] < 1){
+    Cenemy -= 1;
+if(Cenemy < 1)fun = 2;
+document.getElementById( enemyId[enemyName.indexOf(target[attaker])] ).style.display = 'none';
+aiful = enemyName.indexOf(action[attaker]);
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+    }
 }
 
 if(action[attaker].includes("スキル2")){
@@ -1124,14 +1130,23 @@ friendMp[attaker] -= 5;
 
 }
 if(action[attaker].includes("アイテム3")){ 
-enemyHp[0] -= random;
-array[4] += "\n" + enemyName[0] + "に" + random + "ダメージ";
+random = Math.floor( Math.random() * 51 ) + 20;
+enemyHp[target[attaker]] -= random;
+if(enemyHp[target[attaker]] < 1){
+    Cenemy -= 1;
+if(Cenemy < 1)fun = 2;
+document.getElementById( enemyId[enemyName.indexOf(target[attaker])] ).style.display = 'none';
+aiful = enemyName.indexOf(action[attaker]);
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+    }
+array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
 itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
-target[attaker] = null;
 }
 }
 
