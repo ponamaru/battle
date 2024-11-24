@@ -185,22 +185,22 @@ body {
     top: 250;
 	left: 800;
 }
-
-      @keyframes floatingD {
-      0% {
-        transform: translateY(-1%);
-      }
-      100% {
-        transform: translateY(1%);
-      }
+.blinking{
+	-webkit-animation:blink 0.5s ease-in-out infinite alternate;
+    -moz-animation:blink 0.5s ease-in-out infinite alternate;
+    animation:blink 0.5s ease-in-out infinite alternate;
 }
-      @keyframes floatingU {
-      0% {
-        transform: translateY(1%);
-      }
-      100% {
-        transform: translateY(-1%);
-      }
+@-webkit-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@-moz-keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
+}
+@keyframes blink{
+    0% {opacity:0;}
+    100% {opacity:1;}
 }
     </style>
 </head>
@@ -217,7 +217,7 @@ body {
 <div id="hp2">HP:200</div>
 <div id="mp2">MP:100</div>
 </div>
-<div id="triangle"></div><div class="tD" id="triangleD"></div><div class="tU"  id="triangleU"></div>
+<div id="triangle"></div><div class="blinking" id="triangleD"></div><div class="blinking"  id="triangleU"></div>
 <div id="fun">MP:100</div>
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
 
@@ -277,9 +277,9 @@ if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + "
 let intervalI = setInterval(carsol, 1);
 
 document.getElementById( 'triangleU' ).style.top = 470;
-document.getElementById( 'triangleU' ).style.left = 600;
+document.getElementById( 'triangleU' ).style.left = 650;
 document.getElementById( 'triangleD' ).style.top = 650;
-document.getElementById( 'triangleD' ).style.left = 600;
+document.getElementById( 'triangleD' ).style.left = 650;
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
 
