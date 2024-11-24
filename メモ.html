@@ -218,7 +218,7 @@ document.getElementById("mp").innerText = "MP:" + friendMp[0];
 document.getElementById("hp2").innerText = "HP:" + friendHp[1];
 document.getElementById("mp2").innerText = "MP:" + friendMp[1];
 
-document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + selectfun + "and" + enemyHp;
+document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + decide + "and" + action;
 document.getElementById( 'square2' ).style.width = friendHp[0]*2;
 document.getElementById( 'square4' ).style.width = friendHp[1]*2;
 document.getElementById( 'square2' ).style.height = friendHp[0]*2;
@@ -229,7 +229,8 @@ document.getElementById( 'square' ).style.width = friendMp[0]*4;
 document.getElementById( 'square3' ).style.height = friendMp[1]*4;
 document.getElementById( 'square' ).style.height = friendMp[0]*4;
 
-
+if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
+if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
 }
 
 let intervalI = setInterval(carsol, 1);
@@ -250,6 +251,7 @@ nulltype();
 }
 if(fun === 0) {
 if(sc === true) {
+
 skillItemQTE();
 
 if(sc === true) {
@@ -259,10 +261,15 @@ action[attaker] = enemyName[decide];
 }
     if(selectfun === 3){
 action[attaker] = skillIntro[decide];
-
+decide = 0;
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
 }
     if(selectfun === 4){
 action[attaker] = itemIntro[decide];
+decide = 0;
+                y1 = 500;
+    document.getElementById( 'triangle' ).style.top = y1;
 }
 }
     if(selectfun === 2){
@@ -471,8 +478,14 @@ typing('.typing-animation', array[nowtext]);
 type();
  function b () {
 var key_code = event.keyCode;
-if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
-if(selectfun === 4)document.getElementById("area").innerText = itemE[decide];
+
+if(( key_code === 40 )&&((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
+if(decide === 3){
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+}
 if(selectfun === 1) {
 	if( key_code === 38 ) {
 if(decide > 0) {
@@ -543,21 +556,25 @@ document.getElementById("select2").innerText = skillIntro[decide + 1];
 document.getElementById("select3").innerText = skillIntro[decide + 2];
 }
         }else{
+if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
 if(skillIntro[decide + 1] === null){}else{
-if(document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
 if(decide < Cfriend - 1){
+if(skillIntro[decide + 1] === null){}else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
-}else{
+}
+}
+        }else{
+if(itemIntro[decide + 1] === null){}else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
-
-        }
-}   }
+}
+}   
+    }
     }
 if(selectfun === 4) { //itemselect
 	if( key_code === 38 ) {
@@ -574,8 +591,8 @@ document.getElementById("select3").innerText = itemIntro[decide];
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
     }
+}
     }
-        }
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
@@ -588,7 +605,7 @@ document.getElementById("select2").innerText = itemIntro[decide + 1];
 document.getElementById("select3").innerText = itemIntro[decide + 2];
 }
         }else{
-if(document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
 if(itemIntro[decide + 1] === null){}else{
 if(decide < Cfriend - 1){
 if(itemIntro[decide + 1] === null){}else{
@@ -638,10 +655,7 @@ attacker = 0;
 trun();
 }
 }else{
-if(itemIntro[decide] === "アイテム1"){
-decide = 0;
-                y1 = 500;
-    document.getElementById( 'triangle' ).style.top = y1;
+if((itemIntro[decide] === "アイテム1")||(itemIntro[decide] === "アイテム2")){
     action[attaker] += friend[decide];
 aiful = 0;
 document.getElementById("select").innerText = null;
@@ -718,10 +732,9 @@ attacker = 0;
 trun();
 }
 }else{
+
 if(skillIntro[decide] === "スキル2"){
-y1 = 500;
-    document.getElementById( 'triangle' ).style.top = y1;
-aiful = -1;
+aiful = 0;
 document.getElementById("select").innerText = null;
 for (let i = 0; aiful < Cfriend; i++) {
 aiful += 1;
@@ -776,7 +789,19 @@ function skillItem() {
 if(action[attaker].includes("アイテム1")){ 
 friendHp[friend.indexOf(target[attaker])] += 10;
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
-itemE[itemIntro.indexOf(action[attaker])] = 'HPを回復(' + itemN[itemIntro.indexOf(action[attaker])] + '個)';
+array[4] += "\n" + target[attaker] + "のhpは10回復した";
+if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
+aiful = itemIntro.indexOf(action[attaker]);
+itemN.splice( aiful,1 );
+itemIntro.splice( aiful,1 );
+itemE.splice( aiful,1 );
+target[attaker] = null;
+}
+}
+if(action[attaker].includes("アイテム2")){ 
+friendMp[friend.indexOf(target[attaker])] += 10;
+itemN[itemIntro.indexOf(action[attaker])] -= 1;
+array[4] += "\n" + target[attaker] + "のmpは10回復した";
 if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
 aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
@@ -788,6 +813,11 @@ target[attaker] = null;
 if(action[attaker].includes("スキル4")){ 
 enemyHp[0] -= random;
 array[4] += "\n" + enemyName[0] + "に" + random + "ダメージ";
+friendMp[attaker] -= 5;
+}
+if(action[attaker].includes("スキル2")){ 
+friendHp[friend.indexOf(target[attaker])] += 10;
+array[4] += "\n" + target[attaker] + "は10回復した";
 friendMp[attaker] -= 5;
 }
 if(action[attaker].includes("アイテム3")){ 
