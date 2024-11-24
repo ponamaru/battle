@@ -273,6 +273,11 @@ body {
     -moz-animation:blink 0.5s ease-in-out infinite alternate;
     animation:blink 0.5s ease-in-out infinite alternate;
 }
+.blinking2{
+	-webkit-animation:blink 0.2s ease-in-out infinite alternate;
+    -moz-animation:blink 0.2s ease-in-out infinite alternate;
+    animation:blink 0.2s ease-in-out infinite alternate;
+}
 @-webkit-keyframes blink{
     0% {opacity:0;}
     100% {opacity:1;}
@@ -307,7 +312,7 @@ left: 20;
 }
     </style>
 </head>
-<img id="enemy1" src="Slime_JE1.png"> <img id="enemy2" src="Slime_JE1.png">
+<img id="enemy1" class="op1" src="Slime_JE1.png"> <img class="op1" id="enemy2" src="Slime_JE1.png">
 <div id="hpmpUI">
 <div id="square"></div><div id="square-boder"></div>
 <div id="square2"></div>
@@ -373,7 +378,15 @@ var aiful = 0;
 var aiOver = 0;
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
     
-
+function damageE() {
+  const element = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
+    element.classList.add("blinking2");
+window.setTimeout(damageE2,3000);
+}
+function damageE2() {
+const element = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
+element.classList.remove("blinking2");
+}
 
 function carsol() {
 document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + friendMp[attaker] + "and" + action;
@@ -443,11 +456,11 @@ if( key_code === 65 )alert(friend[0] - "ta");
 	if( key_code === 90 ) {
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'none';
-if(fun === 1) {
+if((fun === 1)&&(document.getElementById("area").innerText === array[nowtext])) {
 nowtext = 5;
 nulltype();
 }
-if(fun === 2) {
+if((fun === 2)&&(document.getElementById("area").innerText === array[nowtext])) {
 nowtext = 6;
 nulltype();
 }
@@ -633,6 +646,7 @@ action[attaker] = enemyName[0];
 }
 enemyHp[enemyName.indexOf(action[attaker])] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + action[attaker] + "に" + random + "ダメージ";
+damageE();
 if(enemyHp[enemyName.indexOf(action[attaker])] < 1){
     Cenemy -= 1;
 if(Cenemy < 1)fun = 2;
@@ -649,6 +663,7 @@ skillItem();
 }else{
 enemyHp[0] -= random;
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
+damageE()
 }
 
 }
