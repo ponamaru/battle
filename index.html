@@ -425,12 +425,17 @@ image2.animate(
 
 function damageEa() {
 damageE();
-enemyHp[target[attaker]] -= random;
-if(enemyHp[target[attaker]] < 1){
+enemyHp[enemyName.indexOf(target[attaker])] -= random;
+if(enemyHp[enemyName.indexOf(target[attaker])] < 1){
     Cenemy -= 1;
 if(Cenemy < 1)fun = 2;
 document.getElementById( enemyId[enemyName.indexOf(target[attaker])] ).style.display = 'none';
-aiful = enemyName.indexOf(action[attaker]);
+
+if(enemyName.includes(action[attaker])) {
+    aiful = enemyName.indexOf(action[attaker]);
+    }else{
+ aiful = enemyName.indexOf(target[attaker]);
+    }
 enemyName.splice( aiful,1 );
 enemyHp.splice( aiful,1 );
 enemyId.splice( aiful,1 );
@@ -1158,7 +1163,6 @@ itemE.splice( aiful,1 );
 }
 if(action[attaker].includes("スキル4")){ 
 random = Math.floor( Math.random() * 51 ) + 20;
-enemyHp[target[attaker]] -= random;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
 friendMp[attaker] -= 5;
