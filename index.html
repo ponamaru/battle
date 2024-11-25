@@ -316,7 +316,7 @@ position: absolute;
 top: 450;
 left: 300;
 width: 200;
-height: 150;
+
 display: none;
 }
    
@@ -445,9 +445,9 @@ function carsol() {
 document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + friendMp[attaker] + "and" + action;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = "目.png";
-if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = "black.png";
-if(document.getElementById("area").innerText.includes(friend[1]) === true)document.getElementById( 'cr' ).src = "59.png";
-if(document.getElementById("area").innerText.includes(friend[0]) === true)document.getElementById( 'cr' ).src = "car.png";
+if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = "blackman_smile1.png";
+if(document.getElementById("area").innerText.includes(friend[1]) === true)document.getElementById( 'cr' ).src = "smile_woman.png";
+if(document.getElementById("area").innerText.includes(friend[0]) === true)document.getElementById( 'cr' ).src = "face.png";
 
 document.getElementById("hp").innerText = "HP:" + friendHp[0];
 document.getElementById("mp").innerText = "MP:" + friendMp[0];
@@ -888,7 +888,7 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }
         }else{
-if(itemIntro[decide + 1] === null){}else{
+if(skillIntro[decide + 1] === null){}else{
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
