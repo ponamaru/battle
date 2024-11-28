@@ -182,18 +182,16 @@ let key = 0;
                 fileReader.readAsDataURL(obj.files[i]);
             }
         }
-        function preview8(obj) {
-            for (i = 0; i < obj.files.length; i++) {
-                let fileReader = new FileReader();
-                fileReader.onload = ((e)=> {
-                    if(bgm === true)audio.stop();
-                    var audio = new Audio();
-                    fileReader.src = fileReader.result;
+
+function preview8(obj, previewId) {
+    let fileReader = new FileReader();
+    fileReader.onload = (function () {
+                            audio.stop();
+                    const audio = e.target.result;
                     audio.play();
-                });
-                fileReader.readAsDataURL(obj.files[i]);
-            }
-        }
+    });
+    fileReader.readAsDataURL(obj.files[0]);
+}
 function Cene4() {
 document.getElementById('editEnemy').style.display = 'none';
 document.getElementById('editSystem').style.display = 'none';
