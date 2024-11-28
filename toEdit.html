@@ -390,6 +390,8 @@ var action = [null,null,null,null];
 var friend = ["takashi","hana","bob","uh"];
 var friendHp = [100,100,100,100];
 var friendMp = [50,50,50,50];
+var friendHb = [100,100,100,100];
+var friendMb = [50,50,50,50];
 var crI = ["face.png","smile_woman.png","black.png","目.png"];
 var attackE = 0;
 var fun = 0;
@@ -494,23 +496,23 @@ document.getElementById("mp3").innerText = "MP:" + friendMp[2];
 document.getElementById("hp4").innerText = "HP:" + friendHp[3];
 document.getElementById("mp4").innerText = "MP:" + friendMp[3];
 
-document.getElementById( 'square2' ).style.width = friendHp[0]*2;
-document.getElementById( 'square2' ).style.height = friendHp[0]*2;
-document.getElementById( 'square4' ).style.width = friendHp[1]*2;
-document.getElementById( 'square4' ).style.height = friendHp[1]*2;
-document.getElementById( 'square6' ).style.width = friendHp[2]*2;
-document.getElementById( 'square6' ).style.height = friendHp[2]*2;
-document.getElementById( 'square8' ).style.width = friendHp[3]*2;
-document.getElementById( 'square8' ).style.height = friendHp[3]*2;
+document.getElementById( 'square2' ).style.width = 200/friendHb[0]*friendHp[0];
+document.getElementById( 'square2' ).style.height = 200/friendHb[0]*friendHp[0];
+document.getElementById( 'square4' ).style.width = 200/friendHb[1]*friendHp[1];
+document.getElementById( 'square4' ).style.height = 200/friendHb[1]*friendHp[1];
+document.getElementById( 'square6' ).style.width = 200/friendHb[2]*friendHp[2];
+document.getElementById( 'square6' ).style.height = 200/friendHb[2]*friendHp[2];
+document.getElementById( 'square8' ).style.width = 200/friendHb[3]*friendHp[3];
+document.getElementById( 'square8' ).style.height = 200/friendHb[3]*friendHp[3];
 
-document.getElementById( 'square5' ).style.height = friendMp[2]*4;
-document.getElementById( 'square5' ).style.width = friendMp[2]*4;
-document.getElementById( 'square' ).style.width = friendMp[0]*4;
-document.getElementById( 'square' ).style.height = friendMp[0]*4;
-document.getElementById( 'square3' ).style.width = friendMp[1]*4;
-document.getElementById( 'square3' ).style.height = friendMp[1]*4;
-document.getElementById( 'square7' ).style.width = friendMp[3]*4;
-document.getElementById( 'square7' ).style.height = friendMp[3]*4;
+document.getElementById( 'square5' ).style.height = 200/friendMb[0]*friendMp[0];
+document.getElementById( 'square5' ).style.width = 200/friendMb[0]*friendMp[0];
+document.getElementById( 'square' ).style.width = 200/friendMb[1]*friendMp[1];
+document.getElementById( 'square' ).style.height = 200/friendMb[1]*friendMp[1];
+document.getElementById( 'square3' ).style.width = 200/friendMb[2]*friendMp[2];
+document.getElementById( 'square3' ).style.height = 200/friendMb[2]*friendMp[2];
+document.getElementById( 'square7' ).style.width = 200/friendMb[3]*friendMp[3];
+document.getElementById( 'square7' ).style.height = 200/friendMb[3]*friendMp[3];
 
 if(aiOver < 4){
 aiOver += 1;
@@ -520,8 +522,8 @@ aiOver = 0;
 
 if(friendHp[aiOver] < 1)friendHp[aiOver] = 0;
 if(friendMp[aiOver] < 1)friendMp[aiOver] = 0;
-if(friendHp[aiOver] > 100)friendHp[aiOver] = 50;
-if(friendMp[aiOver] > 50)friendMp[aiOver] = 50;
+if(friendHp[aiOver] > friendHb[aiOver])friendHp[aiOver] = friendHb[aiOver];
+if(friendMp[aiOver] > friendMb[aiOver])friendMp[aiOver] = friendMb[aiOver];
 
 if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
 if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
