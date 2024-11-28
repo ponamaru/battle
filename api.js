@@ -183,15 +183,6 @@ let key = 0;
             }
         }
 
-function preview8(obj, previewId) {
-    let fileReader = new FileReader();
-    fileReader.onload = (function () {
-                            audio.stop();
-                    const audio = e.target.result;
-                    audio.play();
-    });
-    fileReader.readAsDataURL(obj.files[0]);
-}
 function Cene4() {
 document.getElementById('editEnemy').style.display = 'none';
 document.getElementById('editSystem').style.display = 'none';
