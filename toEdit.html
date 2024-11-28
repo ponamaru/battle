@@ -331,6 +331,7 @@ display: none;
 }
     </style>
 </head>
+<audio id="bgmT" src="dorakue9.m4a"></audio>
 <img id="enemy1" class="op1" src="Slime_JE1.png"> <img class="op1" id="enemy2" src="Slime_JE1.png"><img class="op1" id="enemy3" src="Slime_JE1.png">
 <img id="cr" src="black.png">
 <div id="hpmpUI">
@@ -406,14 +407,27 @@ const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
 
 addEventListener('keydown', () => {
 if(bgm === false) {
-const audio = new Audio('dorakue9.m4a');
-audio.volume = 0;
+const audio = document.getElementById("bgmT");
 audio.play();
 audio.volume = 1;
 audio.loop = true;
 bgm = true;
 }
 });
+
+function preview8(obj) {
+const audio = document.getElementById("bgmT");
+audio.pause();
+            for (i = 0; i < obj.files.length; i++) {
+                let fileReader = new FileReader();
+                fileReader.onload = ((e)=> {
+                    audio.src = e.target.result;
+audio.play();
+                });
+                fileReader.readAsDataURL(obj.files[i]);
+            }
+}
+
 
 function damageE() {
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
