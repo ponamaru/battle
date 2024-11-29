@@ -1,4 +1,4 @@
-document.write( '<div id="editUI" class="item2"><p>Eキーで非表示</p><button id="systemEditB" onclick="Cene8()">Other</button><button id="emnemyEditB" onclick="Cene3()">enemys</button><button id="friendEditB" onclick="Cene4()">friends</button><div id="editEnemy"><p>敵の数</p><div id="Menemy">3</div><button id="CeneL" onclick="Cene()">←</button><button id="CeneR" onclick="Cene2()">→</button><p></p><div id="enemydiv1"><form><p>敵1</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview(this);"></form>名前<input id="input1" oninput="inputM()" placeholder="敵1の名前" value="敵1">大きさ<input id="input4" oninput="inputM()" placeholder="大きさ" value="200">位置(上下)<input id="input5" oninput="inputM()"  value="250">位置(左右)<input id="input7" oninput="inputM()" value="200">HP<input id="input17" oninput="inputM()" value="100">最大攻撃力<input id="input37" oninput="inputM3()" placeholder="敵1の最大攻撃力" value="20"></div><form name="myform"><div id="img"></div><div id="enemydiv2"><form><p>敵2</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview2(this);"></form><p>名前<input id="input2" oninput="inputM2()" value="敵2">大きさ<input id="input8" oninput="inputM2()" placeholder="大きさ" value="200">位置(上下)<input id="input9" oninput="inputM2()" placeholder="位置(上下)" value="200">位置(左右)<input id="input10" oninput="inputM2()"  placeholder="位置(左右)" value="400">HP<input id="input16" oninput="inputM2()" placeholder="HP" value="100">最大攻撃力<input id="input36" oninput="inputM2()" placeholder="敵2の最大攻撃力" value="20"></p></div><div id="enemydiv3"><form><p>敵3</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview3(this);"></form>名前<input id="input11" oninput="inputM3()" placeholder="敵3の名前" value="敵3">大きさ<input id="input12" oninput="inputM3()" placeholder="大きさ" value="200">位置(上下)<input id="input13" oninput="inputM3()" placeholder="位置(上下)" value="200">位置(左右)<input id="input14" oninput="inputM3()" placeholder="位置(左右)" value="600">HP<input id="input15" oninput="inputM3()" placeholder="HP" value="100">最大攻撃力<input id="input35" oninput="inputM3()" placeholder="敵3の最大攻撃力" value="20"></div></div><div id="editFriend"><p>味方の数</p><div id="Menemy2">3</div><button id="CeneL2" onclick="Cene5()">←</button><button id="CeneR2" onclick="Cene6()">→</button><div id="frienddiv1"><form><p>味方1の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview4(this);"></form>名前<input id="input18" oninput="inputM4()" placeholder="味方1の名前" value="味方1">HP<input id="input19" oninput="inputM4()" placeholder="味方1のhp" value="100">MP<input id="input20" oninput="inputM4()" placeholder="味方1のmp" value="50">最大攻撃力<input id="input21" oninput="inputM4()" placeholder="味方1の最大攻撃力" value="20"></div><div id="frienddiv2"><form><p>味方2の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview5(this);"></form>名前<input id="input22" oninput="inputM5()" placeholder="味方2の名前" value="味方2">HP<input id="input23" oninput="inputM5()" placeholder="味方2のhp" value="100">MP<input id="input25" oninput="inputM5()" placeholder="味方2のmp" value="50">最大攻撃力<input id="input24" oninput="inputM5()" placeholder="味方2の最大攻撃力" value="20"></div><div id="frienddiv3"><form><p>味方3の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview6(this);"></form>名前<input id="input27" oninput="inputM6()" placeholder="味方3の名前" value="味方3">HP<input id="input26" oninput="inputM6()" placeholder="味方3のhp" value="100">MP<input id="input32" oninput="inputM6()" placeholder="味方3のmp" value="50">最大攻撃力<input id="input33" oninput="inputM6()" placeholder="味方3の最大攻撃力" value="20"></div><div id="frienddiv4"><form><p>味方4の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview7(this);"></form>名前<input id="input28" oninput="inputM7()" placeholder="味方4の名前" value="味方4">HP<input id="input29" oninput="inputM7()" placeholder="味方4のhp" value="100">MP<input id="input30" oninput="inputM7()" placeholder="味方4のmp" value="50">最大攻撃力<input id="input31" oninput="inputM7()" placeholder="味方4の最大攻撃力" value="20"></div></div><div id="editSystem"><div>BGM</div><input id="34" type="file" accept="audio/*" oninput="preview8(this)"></div><a id="btn" download="sample.txt">ダウンロード</a></div>');
+document.write( '<div id="editUI" class="item2"><p>Eキーで非表示</p><button id="systemEditB" onclick="Cene8()">Other</button><button id="emnemyEditB" onclick="Cene3()">enemys</button><button id="friendEditB" onclick="Cene4()">friends</button><div id="editEnemy"><p>敵の数</p><div id="Menemy">3</div><button id="CeneL" onclick="Cene()">←</button><button id="CeneR" onclick="Cene2()">→</button><p></p><div id="enemydiv1"><form><p>敵1</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview(this);"></form>名前<input id="input1" oninput="inputM()" placeholder="敵1の名前" value="敵1">大きさ<input id="input4" oninput="inputM()" placeholder="大きさ" value="300">位置(上下)<input id="input5" oninput="inputM()"  value="250"><p>位置(左右)<input id="input7" oninput="inputM()" value="200">HP<input id="input17" oninput="inputM()" value="100">最大攻撃力<input id="input37" oninput="inputM3()" placeholder="敵1の最大攻撃力" value="20"></p></div><form name="myform"><div id="img"></div><div id="enemydiv2"><form><p>敵2</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview2(this);"></form><p>名前<input id="input2" oninput="inputM2()" value="敵2">大きさ<input id="input8" oninput="inputM2()" placeholder="大きさ" value="300">位置(上下)<input id="input9" oninput="inputM2()" placeholder="位置(上下)" value="250"><p>位置(左右)<input id="input10" oninput="inputM2()"  placeholder="位置(左右)" value="600">HP<input id="input16" oninput="inputM2()" placeholder="HP" value="100">最大攻撃力<input id="input36" oninput="inputM2()" placeholder="敵2の最大攻撃力" value="20"></p></div><div id="enemydiv3"><form><p>敵3</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview3(this);"></form>名前<input id="input11" oninput="inputM3()" placeholder="敵3の名前" value="敵3">大きさ<input id="input12" oninput="inputM3()" placeholder="大きさ" value="300">位置(上下)<input id="input13" oninput="inputM3()" placeholder="位置(上下)" value="250"><p>位置(左右)<input id="input14" oninput="inputM3()" placeholder="位置(左右)" value="1000">HP<input id="input15" oninput="inputM3()" placeholder="HP" value="100">最大攻撃力<input id="input35" oninput="inputM3()" placeholder="敵3の最大攻撃力" value="20"></div></div><div id="editFriend"><p>味方の数</p><div id="Menemy2">3</div><button id="CeneL2" onclick="Cene5()">←</button><button id="CeneR2" onclick="Cene6()">→</button><div id="frienddiv1"><form><p>味方1の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview4(this);"></form>名前<input id="input18" oninput="inputM4()" placeholder="味方1の名前" value="味方1">HP<input id="input19" oninput="inputM4()" placeholder="味方1のhp" value="100">MP<input id="input20" oninput="inputM4()" placeholder="味方1のmp" value="50">最大攻撃力<input id="input21" oninput="inputM4()" placeholder="味方1の最大攻撃力" value="20"></p></div><div id="frienddiv2"><form><p>味方2の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview5(this);"></form>名前<input id="input22" oninput="inputM5()" placeholder="味方2の名前" value="味方2">HP<input id="input23" oninput="inputM5()" placeholder="味方2のhp" value="100">MP<input id="input25" oninput="inputM5()" placeholder="味方2のmp" value="50">最大攻撃力<input id="input24" oninput="inputM5()" placeholder="味方2の最大攻撃力" value="20"></div><div id="frienddiv3"><form><p>味方3の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview6(this);"></form>名前<input id="input27" oninput="inputM6()" placeholder="味方3の名前" value="味方3">HP<input id="input26" oninput="inputM6()" placeholder="味方3のhp" value="100">MP<input id="input32" oninput="inputM6()" placeholder="味方3のmp" value="50">最大攻撃力<input id="input33" oninput="inputM6()" placeholder="味方3の最大攻撃力" value="20"></div><div id="frienddiv4"><form><p>味方4の画像</p><input type="file" accept="image/*" multiple=" multiple" onchange="preview7(this);"></form>名前<input id="input28" oninput="inputM7()" placeholder="味方4の名前" value="味方4">HP<input id="input29" oninput="inputM7()" placeholder="味方4のhp" value="100">MP<input id="input30" oninput="inputM7()" placeholder="味方4のmp" value="50">最大攻撃力<input id="input31" oninput="inputM7()" placeholder="味方4の最大攻撃力" value="20"></div></div><div id="editSystem"><div>BGM</div><input id="34" type="file" accept="audio/*" oninput="preview8(this)"></div><a id="btn" download="sample.txt">ダウンロード</a></div>');
 var UIv = true;
 function inputM (){
 enemyName[0] = document.getElementById('input1').value;
@@ -257,44 +257,45 @@ const btn = document.getElementById('btn');
 btn.addEventListener('click', function() {
       const blob = new Blob([
 document.getElementById('input1').value,
-document.getElementById('input2').value,
+"\n" + document.getElementById('input2').value,
 
-document.getElementById('input4').value,
-document.getElementById('input5').value,
+"\n" + document.getElementById('input4').value,
+"\n" + document.getElementById('input5').value,
 
-document.getElementById('input7').value,
-document.getElementById('input8').value,
-document.getElementById('input9').value,
-document.getElementById('input10').value,
-document.getElementById('input11').value,
-document.getElementById('input12').value,
-document.getElementById('input13').value,
-document.getElementById('input14').value,
-document.getElementById('input15').value,
-document.getElementById('input16').value,
-document.getElementById('input17').value,
-document.getElementById('input18').value,
-document.getElementById('input19').value,
-document.getElementById('input20').value,
-document.getElementById('input21').value,
-document.getElementById('input22').value,
-document.getElementById('input23').value,
-document.getElementById('input24').value,
-document.getElementById('input25').value,
-document.getElementById('input26').value,
-document.getElementById('input27').value,
-document.getElementById('input28').value,
-document.getElementById('input29').value,
-document.getElementById('input30').value,
-document.getElementById('input31').value,
-document.getElementById('input32').value,
-document.getElementById('input33').value,
-document.getElementById('input35').value,
-document.getElementById('input36').value,
-document.getElementById('input37').value
+"\n" + document.getElementById('input7').value,
+"\n" + document.getElementById('input8').value,
+"\n" + document.getElementById('input9').value,
+"\n" + document.getElementById('input10').value,
+"\n" + document.getElementById('input11').value,
+"\n" + document.getElementById('input12').value,
+"\n" + document.getElementById('input13').value,
+"\n" + document.getElementById('input14').value,
+"\n" + document.getElementById('input15').value,
+"\n" + document.getElementById('input16').value,
+"\n" + document.getElementById('input17').value,
+"\n" + document.getElementById('input18').value,
+"\n" + document.getElementById('input19').value,
+"\n" + document.getElementById('input20').value,
+"\n" + document.getElementById('input21').value,
+"\n" + document.getElementById('input22').value,
+"\n" + document.getElementById('input23').value,
+"\n" + document.getElementById('input24').value,
+"\n" + document.getElementById('input25').value,
+"\n" + document.getElementById('input26').value,
+"\n" + document.getElementById('input27').value,
+"\n" + document.getElementById('input28').value,
+"\n" + document.getElementById('input29').value,
+"\n" + document.getElementById('input30').value,
+"\n" + document.getElementById('input31').value,
+"\n" + document.getElementById('input32').value,
+"\n" + document.getElementById('input33').value,
+"\n" + document.getElementById('input35').value,
+"\n" + document.getElementById('input36').value,
+"\n" + document.getElementById('input37').value
 ], { "type" : "text/plain" });
 
       btn.href = window.URL.createObjectURL(blob);   
+    var CreateFolder = new Folder ("/c/sample/"); CreateFolder.create();
 })
 
 addEventListener( "keyup", UIview);
