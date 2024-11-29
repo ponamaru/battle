@@ -11,3 +11,19 @@ function onFs(fs) {
     onError,
   );
 }
+
+  import jszip from 'jszip'
+  import saveAs from 'filesaver'
+  export default{
+    methods:{
+       make(){
+         let zip = new jszip(); //インスタンス作成
+         zip.folder('icon').file('test.txt','hello world') //iconフォルダを作り、その中にtest.txtファイルを作っている。
+         zip.file('practice.js','hello') // iconフォルダと同じ階層にjsファイルを作っている。
+　
+         zip.generateAsync({type:'blob'}) //blobタイプのzipを作成。
+           .then(function(blob){ //zipデータを受け取る。
+             saveAs(blob,"hello.zip") //第一引数は受け取ったzipデータ,第二引数はzipの名前(.zipは無くてもいい)
+           })
+       }
+   }
