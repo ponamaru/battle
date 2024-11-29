@@ -295,7 +295,9 @@ document.getElementById('input1').value,
 ], { "type" : "text/plain" });
 
       btn.href = window.URL.createObjectURL(blob);   
-    var CreateFolder = new Folder ("/c/sample/"); CreateFolder.create();
+    var CreateFolder = new Folder ("/c/sample/"); 
+    CreateFolder.create();
+    
 })
 
 addEventListener( "keyup", UIview);
