@@ -423,6 +423,7 @@ audio.pause();
                 fileReader.onload = ((e)=> {
                     audio.src = e.target.result;
 audio.play();
+                document.getElementById('editUI').innerHTML += "<a href=" + e.target.result + " download >ダウンロード</a>";
                 });
                 fileReader.readAsDataURL(obj.files[i]);
             }
