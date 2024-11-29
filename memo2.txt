@@ -1,0 +1,13 @@
+function onFs(fs) {
+  fs.root.getDirectory(
+    "Documents",
+    { create: true },
+    (directoryEntry) => {
+      //directoryEntry.isFile === false
+      //directoryEntry.isDirectory === true
+      //directoryEntry.name === 'Documents'
+      //directoryEntry.fullPath === '/Documents'
+    },
+    onError,
+  );
+}
