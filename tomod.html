@@ -373,6 +373,8 @@ display: none;
 <div id="area" class="typing-animation"></div>
 <p>zキーで決定、xキーでキャンセル</p>
 <script>
+var friendAttack = [20,20,20,20];
+var enemyAttack = [20,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル5","スキル6",null];
 var skillE = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
@@ -383,45 +385,36 @@ var target = ["","","",""]
 var decide = 0;
 var nowtext = 0;
 var array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
+var enemyName = ["スライム","スライム2","スライム3",null,null,null];
+var enemyHp = [100,100,100,null,null,null];
+var enemyId = ["enemy1","enemy2","enemy3",null];
 var y1 = 500;
 var selectOver = 1;
 var attaker = 0; var sc = false;
 var action = [null,null,null,null];
+var friend = ["takashi","hana","bob","uh"];
+var friendHp = [100,100,100,100];
+var friendMp = [50,50,50,50];
+var friendHb = [100,100,100,100];
+var friendMb = [50,50,50,50];
+var crI = ["face.png","smile_woman.png","black.png","目.png"];
+var enemyIc = ["Slime_JE1.png","Slime_JE1.png","Slime_JE1.png",null];
 var attackE = 0;
 var fun = 0;
 var random = Math.floor( Math.random() * 31 ) + 0;
 var random2 = Math.floor( Math.random() * Cfriend ) + 0;
+var Cfriend = 2;
+var Cenemy = 3;
 var aiful = 0;
 var aiOver = 0;
 var bgm = false;
-const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
-let textdata = document.getElementById("uhu").innerText;
-var datas = "a";	
-var enemyName = [datas[0], datas[1], datas[8], null, null, null];
-var enemyHp = [datas[16], datas[15], datas[14], null, null, null];
-var enemyId = ["enemy1", "enemy2", "enemy3", null];
-var enemyIc = [datas[34], datas[35], datas[36], null];
-var friend = [datas[17], datas[21], datas[25], datas[29]];
-var friendHp = [datas[18], datas[22], datas[26], datas[30]];
-var friendMp = [datas[19], datas[23], datas[27], datas[31]];
-var friendHb = [datas[18], datas[22], datas[26], datas[30]];
-var friendMb = [datas[19], datas[23], datas[27], datas[31]];
-var crI = [datas[37], datas[38], datas[39], datas[40]];
-var attackE = 0;
-var Cfriend = 2;
-var Cenemy = 3;
-var friendAttack = [datas[30], datas[31], datas[32], datas[33]];
-var enemyAttack = [datas[43], datas[44], datas[45], datas[46]];
 	
     fetch('sample.txt')
       .then(response => response.text())
       .then(data => {
         document.getElementById("uhu").innerText = data;
 	      datas = data.split('$');
-      })
-	
-    if ((datas.length < 50)&&(datas.length > 10)) {
-      enemyName = [datas[0], datas[1], datas[8], null, null, null];
+	            enemyName = [datas[0], datas[1], datas[8], null, null, null];
       enemyHp = [datas[16], datas[15], datas[14], null, null, null];
       enemyId = ["enemy1", "enemy2", "enemy3", null];
       enemyIc = [datas[34], datas[35], datas[36], null];
@@ -436,7 +429,10 @@ Cfriend = 2;
       Cenemy = 3;
       friendAttack = [datas[30], datas[31], datas[32], datas[33]];
       enemyAttack = [datas[43], datas[44], datas[45], datas[46]];
-    } 
+      })
+	
+
+
 
 addEventListener('keydown', () => {
 if(bgm === false) {
