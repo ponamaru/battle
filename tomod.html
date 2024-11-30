@@ -409,16 +409,16 @@ var aiful = 0;
 var aiOver = 0;
 var bgm = false;
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
-
-let textdata = document.getElementById("uhuu").innerText;
-var datas = textdata.split('\n');
-
+	
     fetch('sample.txt')
       .then(response => response.text())
       .then(data => {
         document.getElementById("uhu").innerText = data;
       })
 
+let textdata = document.getElementById("uhu").innerText;
+var datas = textdata.split('\n');
+	
 array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
 enemyName = [datas[0],datas[1],datas[8],null,null,null];
 enemyHp = [datas[16],datas[15],datas[14],null,null,null];
