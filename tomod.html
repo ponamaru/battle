@@ -430,7 +430,47 @@ Cfriend = datas[38];
       Cenemy = datas[39];
       friendAttack = [datas[18], datas[21], datas[30], datas[28]];
       enemyAttack = [datas[33], datas[32], datas[31]];
-	document.getElementById("bgmT").src = datas[43];      
+	document.getElementById("bgmT").src = datas[43]; 
+document.getElementById("enemy1").style.left = datas[4];
+document.getElementById("enemy2").style.left = datas[7];
+document.getElementById("enemy3").style.left = datas[11];
+document.getElementById("enemy1").style.top = datas[3];
+document.getElementById("enemy2").style.top = datas[6];
+document.getElementById("enemy3").style.top = datas[10];
+document.getElementById("enemy1").style.width = datas[2];
+document.getElementById("enemy2").style.width = datas[5];
+document.getElementById("enemy3").style.width = datas[9];
+document.getElementById("enemy1").src = enemyIc[0];
+document.getElementById("enemy2").src = enemyIc[1];
+document.getElementById("enemy3").src = enemyIc[2];
+if(Cenemy === 2){
+document.getElementById( enemyId[2] ).style.display = 'none';
+aiful = 2;
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+document.getElementById('enemydiv3').style.display = 'none';
+}
+if(Cenemy === 1){
+document.getElementById( enemyId[1] ).style.display = 'none';
+aiful = 1;
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+document.getElementById('enemydiv2').style.display = 'none';
+document.getElementById( enemyId[2] ).style.display = 'none';
+aiful = 2;
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+document.getElementById('enemydiv3').style.display = 'none';
+}
+if(Cfriend > 3)document.getElementById( 'hpmpUI4' ).style.display = 'block';
+if(Cfriend < 4)document.getElementById( 'hpmpUI4' ).style.display = 'none';
+if(Cfriend > 2)document.getElementById( 'hpmpUI3' ).style.display = 'block';
+if(Cfriend < 3)document.getElementById( 'hpmpUI3' ).style.display = 'none';
+if(Cfriend > 1)document.getElementById( 'hpmpUI2' ).style.display = 'block';
+if(Cfriend < 2)document.getElementById( 'hpmpUI2' ).style.display = 'none';     
       })
 addEventListener('keydown', () => {
 if(bgm === false) {
