@@ -408,7 +408,7 @@ var Cenemy = 3;
 var aiful = 0;
 var aiOver = 0;
 var bgm = false;
-var bgmD2 = "";
+var bgmD2 = "pool.mp3";
 	
     fetch('sample.txt')
       .then(response => response.text())
@@ -430,11 +430,8 @@ Cfriend = 2;
       Cenemy = 3;
       friendAttack = [datas[18], datas[21], datas[30], datas[28]];
       enemyAttack = [datas[33], datas[32], datas[31]];
+	document.getElementById("bgmT").src = datas[43];      
       })
-	
-document.getElementById("bgmT").src = datas[43];
-
-
 addEventListener('keydown', () => {
 if(bgm === false) {
 const audio = document.getElementById("bgmT");
