@@ -397,6 +397,21 @@ var bgm = false;
 const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");  
 let textdata = document.getElementById("uhu").innerText;
 var datas = "a";	
+var enemyName = [datas[0], datas[1], datas[8], null, null, null];
+var enemyHp = [datas[16], datas[15], datas[14], null, null, null];
+var enemyId = ["enemy1", "enemy2", "enemy3", null];
+var enemyIc = [datas[34], datas[35], datas[36], null];
+var friend = [datas[17], datas[21], datas[25], datas[29]];
+var friendHp = [datas[18], datas[22], datas[26], datas[30]];
+var friendMp = [datas[19], datas[23], datas[27], datas[31]];
+var friendHb = [datas[18], datas[22], datas[26], datas[30]];
+var friendMb = [datas[19], datas[23], datas[27], datas[31]];
+var crI = [datas[37], datas[38], datas[39], datas[40]];
+var attackE = 0;
+var Cfriend = 2;
+var Cenemy = 3;
+var friendAttack = [datas[30], datas[31], datas[32], datas[33]];
+var enemyAttack = [datas[43], datas[44], datas[45], datas[46]];
 	
     fetch('sample.txt')
       .then(response => response.text())
@@ -406,21 +421,21 @@ var datas = "a";
       })
 	
     if ((datas.length < 50)&&(datas.length > 10)) {
-      var enemyName = [datas[0], datas[1], datas[8], null, null, null];
-      var enemyHp = [datas[16], datas[15], datas[14], null, null, null];
-      var enemyId = ["enemy1", "enemy2", "enemy3", null];
-      var enemyIc = [datas[34], datas[35], datas[36], null];
-      var friend = [datas[17], datas[21], datas[25], datas[29]];
-      var friendHp = [datas[18], datas[22], datas[26], datas[30]];
-      var friendMp = [datas[19], datas[23], datas[27], datas[31]];
-      var friendHb = [datas[18], datas[22], datas[26], datas[30]];
-      var friendMb = [datas[19], datas[23], datas[27], datas[31]];
-      var crI = [datas[37], datas[38], datas[39], datas[40]];
-      var attackE = 0;
-      var Cfriend = 2;
-      var Cenemy = 3;
-      var friendAttack = [datas[30], datas[31], datas[32], datas[33]];
-      var enemyAttack = [datas[43], datas[44], datas[45], datas[46]];
+      enemyName = [datas[0], datas[1], datas[8], null, null, null];
+      enemyHp = [datas[16], datas[15], datas[14], null, null, null];
+      enemyId = ["enemy1", "enemy2", "enemy3", null];
+      enemyIc = [datas[34], datas[35], datas[36], null];
+      friend = [datas[17], datas[21], datas[25], datas[29]];
+      friendHp = [datas[18], datas[22], datas[26], datas[30]];
+      friendMp = [datas[19], datas[23], datas[27], datas[31]];
+      friendHb = [datas[18], datas[22], datas[26], datas[30]];
+      friendMb = [datas[19], datas[23], datas[27], datas[31]];
+      crI = [datas[37], datas[38], datas[39], datas[40]];
+      attackE = 0;
+Cfriend = 2;
+      Cenemy = 3;
+      friendAttack = [datas[30], datas[31], datas[32], datas[33]];
+      enemyAttack = [datas[43], datas[44], datas[45], datas[46]];
     } 
 
 addEventListener('keydown', () => {
