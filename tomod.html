@@ -416,7 +416,7 @@ var datas = textdata.split('\n');
     fetch('sample.txt')
       .then(response => response.text())
       .then(data => {
-        alert(data);
+        document.getElementById("uhu").innerText = data;
       })
 
 array = ["敵が現れた","どうする?","どうする?","行動した","たかしは","ゲームオーバー","勝利した"];
