@@ -332,6 +332,9 @@ display: none;
 #uhuu {
 display: none;
 }
+#uhu {
+display: none;
+}
     </style>
 </head>
 <audio id="bgmT" src="dorakue9.m4a"></audio>
@@ -475,6 +478,10 @@ document.getElementById("enemy2").src = enemyIc[1];
 document.getElementById("enemy3").src = enemyIc[2];
 	document.getElementById("bgmT").src = datas[43];   
       document.body.style.backgroundImage = `url(${datas[44]})`;
+document.getElementById( 'friendName' ).innerText = friend[0];
+	document.getElementById( 'friendName2' ).innerText = friend[1];
+	document.getElementById( 'friendName3' ).innerText = friend[2];
+	document.getElementById( 'friendName4' ).innerText = friend[3];
 }catch(e){
  document.getElementById( "tubuY" ).style.display = 'block';
 }
