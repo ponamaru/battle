@@ -414,7 +414,6 @@ var bgmD2 = "pool.mp3";
       .then(response => response.text())
       .then(data => {
         document.getElementById( 'uhu' ).innerText = reader.result;
-        const data = document.getElementById("uhu").innerText;
 	      datas = data.split('$');
  document.getElementById( 'bgmT' ).src = datas[43];
 	            enemyName = [datas[0], datas[1], datas[8], null, null, null];
