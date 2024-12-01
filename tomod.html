@@ -334,9 +334,9 @@ display: none;
 }
     </style>
 </head>
-<audio id="bgmT" src="pool.mp3"></audio>
+<audio id="bgmT" src="dorakue9.m4a"></audio>
 <OBJECT ID="uhuu" DATA="sample.txt" TYPE="text/plain" WIDTH="100%" HEIGHT="100%"></OBJECT><div id="uhu"></div>
-<img id="enemy1" class="op1" src=""> <img class="op1" id="enemy2" src=""><img class="op1" id="enemy3" src="">
+<img id="enemy1" class="op1" src="Slime_JE1.png"> <img class="op1" id="enemy2" src="Slime_JE1.png"><img class="op1" id="enemy3" src="Slime_JE1.png">
 <img id="cr" src="black.png">
 <div id="hpmpUI">
 <div id="square"></div><div id="square-boder"></div>
@@ -369,7 +369,7 @@ display: none;
 <div id="triangle"></div><div class="blinking" id="triangleD"></div><div class="blinking"  id="triangleU"></div>
 <div id="fun">MP:100</div>
 <div id="select">こうげき</div><div id="select2">スキル</div><div id="select3">アイテム</div>
-
+<form name="myform"><input id="tubuY" name="myfile" type="file" />
 <div id="area" class="typing-animation"></div>
 <p>zキーで決定、xキーでキャンセル</p>
 <script>
@@ -378,6 +378,12 @@ var enemyAttack = [20,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル5","スキル6",null];
 var skillE = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillIntro2 = ["スキル7","スキル8","スキル9","スキル10","スキル11","スキル12",null];
+var skillE2 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
+var skillE3 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillIntro4 = ["スキル19","スキル20","スキル21","スキル22","スキル23","スキル24",null];
+var skillE4 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
 var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var itemN = [3,3,2,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
@@ -408,11 +414,14 @@ var Cenemy = 3;
 var aiful = 0;
 var aiOver = 0;
 var bgm = false;
-var bgmD2 = "pool.mp3";
 	
-    fetch('sample.txt')
-      .then(response => response.text())
-      .then(data => {
+var form = document.forms.myform;
+ww();
+async function ww() {
+try{
+document.getElementById( "tubuY" ).style.display = 'none';
+    let response = await fetch('sample.txt');
+      let data = await response.text();
         document.getElementById( 'uhu' ).innerText = reader.result;
 	      datas = data.split('$');
  document.getElementById( 'bgmT' ).src = datas[43];
@@ -465,7 +474,76 @@ document.getElementById("enemy1").src = enemyIc[0];
 document.getElementById("enemy2").src = enemyIc[1];
 document.getElementById("enemy3").src = enemyIc[2];
 	document.getElementById("bgmT").src = datas[43];   
-      })
+      
+}catch(e){
+ document.getElementById( "tubuY" ).style.display = 'block';
+}
+}
+form.myfile.addEventListener( 'change', function(e) {
+    var result = e.target.files[0];
+
+    var reader = new FileReader();
+
+    reader.readAsText( result );
+    reader.addEventListener( 'load', function() {
+   
+        document.getElementById( 'uhu' ).innerText = reader.result;
+        const data = document.getElementById("uhu").innerText;
+	      datas = data.split('$');
+ document.getElementById( 'bgmT' ).src = datas[43];
+	            enemyName = [datas[0], datas[1], datas[8], null, null, null];
+      enemyHp = [datas[14], datas[13], datas[12], null, null, null];
+      enemyId = ["enemy1", "enemy2", "enemy3", null];
+      enemyIc = [datas[40], datas[41], datas[42], null];
+      friend = [datas[15], datas[19], datas[24], datas[25]];
+      friendHp = [datas[16], datas[22], datas[26], datas[30]];
+      friendMp = [datas[17], datas[23], datas[27], datas[29]];
+      friendHb = [datas[16], datas[22], datas[26], datas[30]];
+      friendMb = [datas[17], datas[23], datas[27], datas[29]];
+      crI = [datas[34], datas[35], datas[36], datas[37]];
+      attackE = 0;
+Cfriend = datas[38];
+      Cenemy = datas[39];
+      friendAttack = [datas[18], datas[21], datas[30], datas[28]];
+      enemyAttack = [datas[33], datas[32], datas[31]];
+if(Cenemy < 3){
+document.getElementById( "enemy3" ).style.display = 'none';
+aiful = 2;
+enemyName.splice( aiful,1 );
+enemyHp.splice( aiful,1 );
+enemyId.splice( aiful,1 );
+}
+if(Cenemy < 2){
+document.getElementById( "enemy2" ).style.display = 'none';
+aiful = 1;
+enemyName.splice( aiful,2 );
+enemyHp.splice( aiful,2 );
+enemyId.splice( aiful,2 );;
+document.getElementById( "enemy3" ).style.display = 'none';
+}
+if(Cfriend > 3)document.getElementById( 'hpmpUI4' ).style.display = 'block';
+if(Cfriend < 4)document.getElementById( 'hpmpUI4' ).style.display = 'none';
+if(Cfriend > 2)document.getElementById( 'hpmpUI3' ).style.display = 'block';
+if(Cfriend < 3)document.getElementById( 'hpmpUI3' ).style.display = 'none';
+if(Cfriend > 1)document.getElementById( 'hpmpUI2' ).style.display = 'block';
+if(Cfriend < 2)document.getElementById( 'hpmpUI2' ).style.display = 'none';
+document.getElementById("enemy1").style.left = datas[4];
+document.getElementById("enemy2").style.left = datas[7];
+document.getElementById("enemy3").style.left = datas[11];
+document.getElementById("enemy1").style.top = datas[3];
+document.getElementById("enemy2").style.top = datas[6];
+document.getElementById("enemy3").style.top = datas[10];
+document.getElementById("enemy1").style.width = datas[2];
+document.getElementById("enemy2").style.width = datas[5];
+document.getElementById("enemy3").style.width = datas[9];
+document.getElementById("enemy1").src = enemyIc[0];
+document.getElementById("enemy2").src = enemyIc[1];
+document.getElementById("enemy3").src = enemyIc[2];
+	document.getElementById("bgmT").src = datas[43]; 
+    })
+
+	})
+
 addEventListener('keydown', () => {
 if(bgm === false) {
 const audio = document.getElementById("bgmT");
@@ -487,8 +565,8 @@ audio.pause();
                 let fileReader = new FileReader();
                 fileReader.onload = ((e)=> {
                     audio.src = e.target.result;
+bgmD = e.target.result;
 audio.play();
-			bgmD = e.target.result;
                 document.getElementById('editUI').innerHTML += "<a href=" + e.target.result + " download >ダウンロード</a>";
                 });
                 fileReader.readAsDataURL(obj.files[i]);
@@ -561,7 +639,18 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + friendMp[attaker] + "and" + action;
+document.getElementById("fun").innerText = attaker;
+if (typeof datas !== 'undefined'){
+document.getElementById("enemy1").style.left = datas[4];
+document.getElementById("enemy2").style.left = datas[7];
+document.getElementById("enemy3").style.left = datas[11];
+document.getElementById("enemy1").style.top = datas[3];
+document.getElementById("enemy2").style.top = datas[6];
+document.getElementById("enemy3").style.top = datas[10];
+document.getElementById("enemy1").style.width = datas[2];
+document.getElementById("enemy2").style.width = datas[5];
+document.getElementById("enemy3").style.width = datas[9];
+}
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = crI[3];
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = crI[2];
@@ -606,7 +695,10 @@ if(friendMp[aiOver] < 1)friendMp[aiOver] = 0;
 if(friendHp[aiOver] > friendHb[aiOver])friendHp[aiOver] = friendHb[aiOver];
 if(friendMp[aiOver] > friendMb[aiOver])friendMp[aiOver] = friendMb[aiOver];
 
-if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
+if((selectfun === 3)&&(attaker === 0))document.getElementById("area").innerText = skillE[decide];
+if((selectfun === 3)&&(attaker === 1))document.getElementById("area").innerText = skillE2[decide];
+if((selectfun === 3)&&(attaker === 2))document.getElementById("area").innerText = skillE3[decide];
+if((selectfun === 3)&&(attaker === 3))document.getElementById("area").innerText = skillE4[decide];
 if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
 }
 
@@ -629,7 +721,7 @@ addEventListener( "keydown", zx);
 function zx() {
 var key_code = event.keyCode;
   if (key_code === 65) {
-alert(datas[1]);
+alert(Cenemy);
   }
   if (key_code === 69)alert(enemyName[0]);
 	if( key_code === 90 ) {
@@ -739,9 +831,26 @@ if(decide === 1) {
         y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
 if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
-    document.getElementById("select").innerText = skillIntro[0];
+if(attaker === 0)  {
+document.getElementById("select").innerText = skillIntro[0];
 document.getElementById("select2").innerText = skillIntro[1];
 document.getElementById("select3").innerText = skillIntro[2];
+}
+if(attaker === 1)  {
+document.getElementById("select").innerText = skillIntro2[0];
+document.getElementById("select2").innerText = skillIntro2[1];
+document.getElementById("select3").innerText = skillIntro2[2];
+}
+if(attaker === 2)  {
+document.getElementById("select").innerText = skillIntro3[0];
+document.getElementById("select2").innerText = skillIntro3[1];
+document.getElementById("select3").innerText = skillIntro3[2];
+}
+if(attaker === 3) {
+document.getElementById("select").innerText = skillIntro4[0];
+document.getElementById("select2").innerText = skillIntro4[1];
+document.getElementById("select3").innerText = skillIntro4[2];
+}
 document.getElementById( 'triangleD' ).style.display = 'block';
         }
     if(decide === 2) {
@@ -986,9 +1095,26 @@ document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
-    document.getElementById("select").innerText = skillIntro[decide - 2];
-document.getElementById("select2").innerText = skillIntro[decide - 1];
+if(attaker === 0)  {
 document.getElementById("select3").innerText = skillIntro[decide];
+document.getElementById("select2").innerText = skillIntro[decide - 1];
+document.getElementById("select").innerText = skillIntro[decide - 2];
+}
+if(attaker === 1)  {
+document.getElementById("select3").innerText = skillIntro2[decide];
+document.getElementById("select2").innerText = skillIntro2[decide - 1];
+document.getElementById("select").innerText = skillIntro2[decide - 2];
+}
+if(attaker === 2)  {
+document.getElementById("select3").innerText = skillIntro3[decide];
+document.getElementById("select2").innerText = skillIntro3[decide - 1];
+document.getElementById("select").innerText = skillIntro3[decide - 2];
+}
+if(attaker === 3) {
+document.getElementById("select3").innerText = skillIntro4[decide];
+document.getElementById("select2").innerText = skillIntro4[decide - 1];
+document.getElementById("select").innerText = skillIntro4[decide - 2];
+}
 }
     }else{
         y1 -= 50;
@@ -1007,9 +1133,26 @@ document.getElementById( 'triangleD' ).style.display = 'none';
     document.getElementById( 'triangle' ).style.top = y1;
     decide += 1;
 document.getElementById( 'triangle' ).style.top = 500;
-        document.getElementById("select").innerText = skillIntro[decide];
+if(attaker === 0)  {
+document.getElementById("select").innerText = skillIntro[decide];
 document.getElementById("select2").innerText = skillIntro[decide + 1];
 document.getElementById("select3").innerText = skillIntro[decide + 2];
+}
+if(attaker === 1)  {
+document.getElementById("select").innerText = skillIntro2[decide];
+document.getElementById("select2").innerText = skillIntro2[decide + 1];
+document.getElementById("select3").innerText = skillIntro2[decide + 2];
+}
+if(attaker === 2)  {
+document.getElementById("select").innerText = skillIntro3[decide];
+document.getElementById("select2").innerText = skillIntro3[decide + 1];
+document.getElementById("select3").innerText = skillIntro3[decide + 2];
+}
+if(attaker === 3) {
+document.getElementById("select").innerText = skillIntro4[decide];
+document.getElementById("select2").innerText = skillIntro4[decide + 1];
+document.getElementById("select3").innerText = skillIntro4[decide + 2];
+}
 }
         }else{
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
@@ -1096,6 +1239,7 @@ document.getElementById( 'triangle' ).style.top = y1;
     }
 }
 }
+
 
 function skillItemQTE () {
 if(selectfun === 4) {
