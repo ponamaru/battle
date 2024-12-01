@@ -1,1 +1,1 @@
-敵1$敵2$300$250$200$300$250$600$敵3$300$250$1000$100$100$100$味方1$100$50$20$味方2$100$20$50$100$味方3$味方4$100$50$20$50$20$20$20$20$Slime_JE1.png$Slime_JE1.png$Slime_JE1.png$face.png$smile_woman.png$black.png$目.png$2$3$pool.mp3
+敵1$敵2$300$250$200$300$250$600$敵3$300$250$1000$100$100$100$味方1$100$50$20$味方2$100$20$50$100$味方3$味方4$100$50$20$50$20$20$20$20$Slime_JE1.png$Slime_JE1.png$Slime_JE1.png$face.png$smile_woman.png$black.png$目.png$2$3$pool.mp3$stage5.png
