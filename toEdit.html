@@ -858,11 +858,20 @@ var key_code = event.keyCode;
 
 if(( key_code === 40 )&&((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true))) {
 if(decide === 3){
-    y1 += 50;
+    if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
 }
+}
+	if(( key_code === 40 )&&(document.getElementById( 'select' ).innerText.includes(friend[0]) === true)) {
+if(decide < Cfriend - 1){ 
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+        }
 if(selectfun === 1) {
 	if( key_code === 38 ) {
 if(decide > 0) {
@@ -875,15 +884,14 @@ if(decide > 0) {
 	if( key_code === 40 ) {
 if(y1 < 600){ 
 if(skillIntro[decide + 1] === null){}else{
-    y1 += 50;
+    if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
+y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
 }
+}
         }
-
-
-    
     }
 if(selectfun === 2) {
 if( key_code === 38 ) {
@@ -896,10 +904,11 @@ decide -= 1;
 }
 if( key_code === 40 ) {
 if(enemyName[decide + 1] === null){}else{
-
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
 y1 += 50;
     document.getElementById( 'triangle' ).style.top = y1;
 decide += 1;
+}
 }
 }
 }
@@ -908,6 +917,7 @@ if(selectfun === 3) {
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
@@ -916,6 +926,7 @@ document.getElementById( 'triangleD' ).style.display = 'block';
     document.getElementById("select").innerText = skillIntro[decide - 2];
 document.getElementById("select2").innerText = skillIntro[decide - 1];
 document.getElementById("select3").innerText = skillIntro[decide];
+}
     }else{
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -926,6 +937,7 @@ document.getElementById("select3").innerText = skillIntro[decide];
 	if( key_code === 40 ) {
     if(decide === selectOver * 3 - 1) {
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){}else{
+
 document.getElementById( 'triangleU' ).style.display = 'block';
 document.getElementById( 'triangleD' ).style.display = 'none';
                 y1 = 500;
@@ -941,17 +953,21 @@ if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)|
 if(skillIntro[decide + 1] === null){}else{
 if(decide < Cfriend - 1){
 if(skillIntro[decide + 1] === null){}else{
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
+}
 }
 }
 }
         }else{
 if(itemIntro[decide + 1] === null){}else{
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
+}
 }
 }
 }   
@@ -961,6 +977,7 @@ if(selectfun === 4) { //itemselect
 	if( key_code === 38 ) {
 if(decide > 0) {
 if(y1 < 550) {
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
 document.getElementById( 'triangleU' ).style.display = 'none';
 document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
@@ -969,6 +986,7 @@ document.getElementById( 'triangleD' ).style.display = 'block';
     document.getElementById("select").innerText = itemIntro[decide - 2];
 document.getElementById("select2").innerText = itemIntro[decide - 1];
 document.getElementById("select3").innerText = itemIntro[decide];
+}
     }else{
         y1 -= 50;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -994,23 +1012,28 @@ if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)|
 if(itemIntro[decide + 1] === null){}else{
 if(decide < Cfriend - 1){
 if(itemIntro[decide + 1] === null){}else{
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
+}
 }
 }
 }
         }else{
 if(itemIntro[decide + 1] === null){}else{
+if(!document.getElementById( 'select' ).innerText.includes(friend[0]) === true){
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
+}
 }
 }
 }   
     }
 }
 }
+
 
 function skillItemQTE () {
 if(selectfun === 4) {
