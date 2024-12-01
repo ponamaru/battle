@@ -421,7 +421,6 @@ var bgm = false;
 var form = document.forms.myform;
 ww();
 async function ww() {
-try{
 document.getElementById( "tubuY" ).style.display = 'none';
     let response = await fetch('sample.txt');
       let data = await response.text();
@@ -482,9 +481,6 @@ document.getElementById( 'friendName' ).innerText = friend[0];
 	document.getElementById( 'friendName2' ).innerText = friend[1];
 	document.getElementById( 'friendName3' ).innerText = friend[2];
 	document.getElementById( 'friendName4' ).innerText = friend[3];
-}catch(e){
- document.getElementById( "tubuY" ).style.display = 'block';
-}
 }
 form.myfile.addEventListener( 'change', function(e) {
     var result = e.target.files[0];
