@@ -337,7 +337,7 @@ display: none;
 }
     </style>
 </head>
-<audio id="bgmT" src="pool.mp3"></audio>
+<audio id="bgmT" src="dorakue9.m4a"></audio>
 <OBJECT ID="uhuu" DATA="sample.txt" TYPE="text/plain" WIDTH="100%" HEIGHT="100%"></OBJECT><div id="uhu"></div>
 <img id="enemy1" class="op1" src="Slime_JE1.png"> <img class="op1" id="enemy2" src="Slime_JE1.png"><img class="op1" id="enemy3" src="Slime_JE1.png">
 <img id="cr" src="black.png">
@@ -417,10 +417,12 @@ var Cenemy = 3;
 var aiful = 0;
 var aiOver = 0;
 var bgm = false;
-	
+var skillEffectL = [0,0,0,0];
+var skillEffectB = [20,20,20,20];
 var form = document.forms.myform;
 ww();
 async function ww() {
+try{
 document.getElementById( "tubuY" ).style.display = 'none';
     let response = await fetch('sample.txt');
       let data = await response.text();
@@ -481,6 +483,9 @@ document.getElementById( 'friendName' ).innerText = friend[0];
 	document.getElementById( 'friendName2' ).innerText = friend[1];
 	document.getElementById( 'friendName3' ).innerText = friend[2];
 	document.getElementById( 'friendName4' ).innerText = friend[3];
+}catch(e){
+ document.getElementById( "tubuY" ).style.display = 'block';
+}
 }
 form.myfile.addEventListener( 'change', function(e) {
     var result = e.target.files[0];
@@ -1459,7 +1464,8 @@ itemE.splice( aiful,1 );
 }
 }
 if(action[attaker].includes("スキル4")){ 
-random = Math.floor( Math.random() * 51 ) + 20;
+var skillLB = skillEffectL[0] + skillEffectB[0];
+random = Math.floor( Math.random() * skillLB ) + skillEffectL[0];
 enemyHp[target[attaker]] -= random;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
