@@ -426,7 +426,7 @@ try{
 document.getElementById( "tubuY" ).style.display = 'none';
     let response = await fetch('sample.txt');
       let data = await response.text();
-        document.getElementById( 'uhu' ).innerText = reader.result;
+        document.getElementById( 'uhu' ).innerText = data;
 	      datas = data.split('$');
  document.getElementById( 'bgmT' ).src = datas[43];
 	            enemyName = [datas[0], datas[1], datas[8], null, null, null];
