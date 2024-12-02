@@ -373,7 +373,33 @@ var friendAttack = [20,20,20,20];
 var enemyAttack = [20,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル5","スキル6",null];
-var skillE = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillE = ["消a","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp = [5,5,5,5,5,5,null];
+var skillEffectL = [0,0,0,0];
+var skillEffectB = [20,20,20,20];
+
+var skillIntro2 = ["スキル7","スキル8","スキル9","スキル10","スキル11","スキル12",null];
+var skillE2 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
+var skillEffect2 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp2 = [5,5,5,5,5,5,null];
+var skillEffectL2 = [0,0,0,0];
+var skillEffectB2 = [20,20,20,20];
+
+var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
+var skillE3 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect3 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp3 = [5,5,5,5,5,5,null];
+var skillEffectL3 = [0,0,0,0];
+var skillEffectB3 = [20,20,20,20];
+
+var skillIntro4 = ["スキル19","スキル20","スキル21","スキル22","スキル23","スキル24",null];
+var skillE4 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect4 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp4 = [5,5,5,5,5,5,null];
+var skillEffectL4 = [0,0,0,0];
+var skillEffectB4 = [20,20,20,20];
+
 var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var itemN = [3,3,2,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
@@ -411,16 +437,6 @@ document.getElementById("enemy1").src = enemyIc[0];
 document.getElementById("enemy2").src = enemyIc[1];
 document.getElementById("enemy3").src = enemyIc[2];
 
-addEventListener('keydown', () => {
-if(bgm === false) {
-const audio = document.getElementById("bgmT");
-audio.play();
-audio.volume = 1;
-audio.loop = true;
-bgm = true;
-}
-});
-
 function preview8(obj) {
 const audio = document.getElementById("bgmT");
 audio.pause();
@@ -428,13 +444,23 @@ audio.pause();
                 let fileReader = new FileReader();
                 fileReader.onload = ((e)=> {
                     audio.src = e.target.result;
-bgmT[0] = e.target.result;
+bgmT[0] = obj.files[0].name;
 audio.play();
                 });
                 fileReader.readAsDataURL(obj.files[i]);
             }
 }
 
+addEventListener('keydown', () => {
+if(bgm === false) {
+var key_code = event.keyCode;
+const audio = document.getElementById("bgmT");
+if(!(key_code === 16)||(key_code === 49))audio.play();
+audio.volume = 1;
+audio.loop = true;
+if(!(key_code === 16)||(key_code === 49))bgm = true;
+}
+});
 
 function damageE() {
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
@@ -535,6 +561,11 @@ document.getElementById( 'square3' ).style.height = 200/friendMb[2]*friendMp[2];
 document.getElementById( 'square7' ).style.width = 200/friendMb[3]*friendMp[3];
 document.getElementById( 'square7' ).style.height = 200/friendMb[3]*friendMp[3];
 
+if((selectfun === 3)&&(attaker === 0))document.getElementById("area").innerText = skillE[decide];
+if((selectfun === 3)&&(attaker === 1))document.getElementById("area").innerText = skillE2[decide];
+if((selectfun === 3)&&(attaker === 2))document.getElementById("area").innerText = skillE3[decide];
+if((selectfun === 3)&&(attaker === 3))document.getElementById("area").innerText = skillE4[decide];
+
 if(aiOver < 4){
 aiOver += 1;
 }else{
@@ -546,7 +577,6 @@ if(friendMp[aiOver] < 1)friendMp[aiOver] = 0;
 if(friendHp[aiOver] > friendHb[aiOver])friendHp[aiOver] = friendHb[aiOver];
 if(friendMp[aiOver] > friendMb[aiOver])friendMp[aiOver] = friendMb[aiOver];
 
-if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
 if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
 }
 
@@ -676,10 +706,26 @@ if(decide === 1) {
         y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
 if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
-    document.getElementById("select").innerText = skillIntro[0];
+if(attaker === 0)  {
+document.getElementById("select").innerText = skillIntro[0];
 document.getElementById("select2").innerText = skillIntro[1];
 document.getElementById("select3").innerText = skillIntro[2];
-document.getElementById( 'triangleD' ).style.display = 'block';
+}
+if(attaker === 1)  {
+document.getElementById("select").innerText = skillIntro2[0];
+document.getElementById("select2").innerText = skillIntro2[1];
+document.getElementById("select3").innerText = skillIntro2[2];
+}
+if(attaker === 2)  {
+document.getElementById("select").innerText = skillIntro3[0];
+document.getElementById("select2").innerText = skillIntro3[1];
+document.getElementById("select3").innerText = skillIntro3[2];
+}
+if(attaker === 3) {
+document.getElementById("select").innerText = skillIntro4[0];
+document.getElementById("select2").innerText = skillIntro4[1];
+document.getElementById("select3").innerText = skillIntro4[2];
+}
         }
     if(decide === 2) {
     if(document.getElementById("area").innerText === array[nowtext])selectfun = 4;
@@ -923,9 +969,26 @@ document.getElementById( 'triangleD' ).style.display = 'block';
         y1 = 600;
     document.getElementById( 'triangle' ).style.top = y1;
     decide -= 1;
-    document.getElementById("select").innerText = skillIntro[decide - 2];
-document.getElementById("select2").innerText = skillIntro[decide - 1];
+if(attaker === 0)  {
 document.getElementById("select3").innerText = skillIntro[decide];
+document.getElementById("select2").innerText = skillIntro[decide - 1];
+document.getElementById("select").innerText = skillIntro[decide - 2];
+}
+if(attaker === 1)  {
+document.getElementById("select3").innerText = skillIntro2[decide];
+document.getElementById("select2").innerText = skillIntro2[decide - 1];
+document.getElementById("select").innerText = skillIntro2[decide - 2];
+}
+if(attaker === 2)  {
+document.getElementById("select3").innerText = skillIntro3[decide];
+document.getElementById("select2").innerText = skillIntro3[decide - 1];
+document.getElementById("select").innerText = skillIntro3[decide - 2];
+}
+if(attaker === 3) {
+document.getElementById("select3").innerText = skillIntro4[decide];
+document.getElementById("select2").innerText = skillIntro4[decide - 1];
+document.getElementById("select").innerText = skillIntro4[decide - 2];
+}
 }
     }else{
         y1 -= 50;
@@ -944,9 +1007,26 @@ document.getElementById( 'triangleD' ).style.display = 'none';
     document.getElementById( 'triangle' ).style.top = y1;
     decide += 1;
 document.getElementById( 'triangle' ).style.top = 500;
-        document.getElementById("select").innerText = skillIntro[decide];
+if(attaker === 0)  {
+document.getElementById("select").innerText = skillIntro[decide];
 document.getElementById("select2").innerText = skillIntro[decide + 1];
 document.getElementById("select3").innerText = skillIntro[decide + 2];
+}
+if(attaker === 1)  {
+document.getElementById("select").innerText = skillIntro2[decide];
+document.getElementById("select2").innerText = skillIntro2[decide + 1];
+document.getElementById("select3").innerText = skillIntro2[decide + 2];
+}
+if(attaker === 2)  {
+document.getElementById("select").innerText = skillIntro3[decide];
+document.getElementById("select2").innerText = skillIntro3[decide + 1];
+document.getElementById("select3").innerText = skillIntro3[decide + 2];
+}
+if(attaker === 3) {
+document.getElementById("select").innerText = skillIntro4[decide];
+document.getElementById("select2").innerText = skillIntro4[decide + 1];
+document.getElementById("select3").innerText = skillIntro4[decide + 2];
+}
 }
         }else{
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
@@ -1033,6 +1113,7 @@ document.getElementById( 'triangle' ).style.top = y1;
     }
 }
 }
+
 
 
 function skillItemQTE () {
@@ -1245,7 +1326,8 @@ itemE.splice( aiful,1 );
 }
 }
 if(action[attaker].includes("スキル4")){ 
-random = Math.floor( Math.random() * 51 ) + 20;
+var skillLB = skillEffectL[0] + skillEffectB[0];
+random = Math.floor( Math.random() * skillLB ) + skillEffectL[0];
 enemyHp[target[attaker]] -= random;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
