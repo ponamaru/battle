@@ -48,3 +48,83 @@ f.file("file2.txt", "file2 data");
 var a = document.getElementById('download');  //a要素を
 zipper.link(a);  //zipダウンロード用のリンクに
 zipper.download(); 
+
+			window.addEventListener('DOMContentLoaded', () => {
+				const phase1Element = document.getElementById('phase1');
+				const phase2Element = document.getElementById('phase2');
+				const phase3Element = document.getElementById('phase3');
+
+				/**
+				 * BolbをBase64に変換する
+				 * @param { Blob } blob
+				 */
+				async function bolbToBase64(blob) {
+					return await new Promise(resolve => {
+						const reader = new FileReader();
+						reader.readAsDataURL(blob);
+						reader.onloadend = () => {
+							// Data URL形式のためデータ部以外を除去
+							resolve(reader.result.replace(/data:.*\/.*;base64,/, ''));
+						};
+					});
+				}
+
+				/**
+				 * Base64をBlobに変換する
+				 * @param { string } base64
+				 */
+				 async function base64ToBlob(base64) {
+					// Base64をDataURL形式に変換してfetchを経由する
+					return await fetch('data:application/octet-stream;base64,' + base64).then(res => res.blob());
+				}
+
+				// 圧縮の実行
+				document.getElementById('to-phase2').addEventListener('click', async () => {
+					// テキストを圧縮するstreamの構築
+					const readableStream = new Response(phase1Element.value).body.pipeThrough(new CompressionStream('deflate'));
+					// Base64に変換したものを設定する
+					phase2Element.value = await bolbToBase64(await new Response(readableStream).blob());
+				});
+
+<>
+			window.addEventListener('DOMContentLoaded', () => {
+				/**
+				 * BolbをBase64に変換する
+				 * @param { Blob } blob
+				 * @returns { Promise<string> }
+				 */
+				async function bolbToBase64(blob) {
+					return await new Promise(resolve => {
+						const reader = new FileReader();
+						reader.readAsDataURL(blob);
+						reader.onloadend = () => {
+							// Data URL形式のためデータ部以外を除去
+							resolve(reader.result.replace(/data:.*\/.*;base64,/, ''));
+						};
+					});
+				}
+
+				// PlantUMLでは厳密にはBase64ではないためそのマッピングを定義しておく
+				const from = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'];
+				const to = [...'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'];
+				const mapping = Object.assign(...from.map((key, i) => ({ [key]: to[i] })));
+
+				/**
+				 * PlantUML ServerのURLを取得する
+				 * @param { string } str
+				 */
+				async function getURL(str) {
+					// Deflate-Raw+Base64圧縮をする
+					const readableStream = new Response(str).body.pipeThrough(new CompressionStream('deflate-raw'));
+					const base64 = await bolbToBase64(await new Response(readableStream).blob());
+					// PlantUMLのためのBase64に変換
+					const base64ForPlantUML = base64.replace(/./g, match => mapping[match]);
+					return "http://www.plantuml.com/plantuml/svg/"+base64ForPlantUML;
+				};
+
+				document.getElementById('call').addEventListener('click', async () => {
+					// PlantUMLのAPIのコール
+					document.getElementById('view').src = await getURL(document.getElementById('editor').value);
+				});
+			});
+</>
