@@ -27,3 +27,16 @@ function onFs(fs) {
            })
        }
    }
+
+const imageUrls = [
+  'https://chrysanthemum94.example.com/imageA.png',
+  'https://chrysanthemum94.example.com/imageB.png',
+  'https://chrysanthemum94.example.com/imageC.png',
+];
+Promise.all(
+  imageUrls.map((url) => {return getImage(url);})
+).then((blobs) => {
+  generateZip(blobs).then((zip) => {
+    console.log(URL.createObjectURL(zip))
+  });
+});
