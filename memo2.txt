@@ -3,3 +3,4 @@
 https://168iroha.net/blog/article/202401031600/
 </>
 https://r17n.page/2020/01/12/js-download-zipped-images-to-local/
+<script src="https://cdn.jsdelivr.net/npm/@zip.js/zip.js/dist/zip.min.js"></script>
