@@ -87,44 +87,5 @@ zipper.download();
 				});
 
 <>
-			window.addEventListener('DOMContentLoaded', () => {
-				/**
-				 * BolbをBase64に変換する
-				 * @param { Blob } blob
-				 * @returns { Promise<string> }
-				 */
-				async function bolbToBase64(blob) {
-					return await new Promise(resolve => {
-						const reader = new FileReader();
-						reader.readAsDataURL(blob);
-						reader.onloadend = () => {
-							// Data URL形式のためデータ部以外を除去
-							resolve(reader.result.replace(/data:.*\/.*;base64,/, ''));
-						};
-					});
-				}
-
-				// PlantUMLでは厳密にはBase64ではないためそのマッピングを定義しておく
-				const from = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'];
-				const to = [...'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_'];
-				const mapping = Object.assign(...from.map((key, i) => ({ [key]: to[i] })));
-
-				/**
-				 * PlantUML ServerのURLを取得する
-				 * @param { string } str
-				 */
-				async function getURL(str) {
-					// Deflate-Raw+Base64圧縮をする
-					const readableStream = new Response(str).body.pipeThrough(new CompressionStream('deflate-raw'));
-					const base64 = await bolbToBase64(await new Response(readableStream).blob());
-					// PlantUMLのためのBase64に変換
-					const base64ForPlantUML = base64.replace(/./g, match => mapping[match]);
-					return "http://www.plantuml.com/plantuml/svg/"+base64ForPlantUML;
-				};
-
-				document.getElementById('call').addEventListener('click', async () => {
-					// PlantUMLのAPIのコール
-					document.getElementById('view').src = await getURL(document.getElementById('editor').value);
-				});
-			});
+https://168iroha.net/blog/article/202401031600/
 </>
