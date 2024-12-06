@@ -4,3 +4,93 @@ https://168iroha.net/blog/article/202401031600/
 </>
 https://r17n.page/2020/01/12/js-download-zipped-images-to-local/
 <script src="https://cdn.jsdelivr.net/npm/@zip.js/zip.js/dist/zip.min.js"></script>
+
+// jszip を CDN から読み込み
+function loadJSZipFromCDN()
+{
+  let script = document.createElement("script");
+  script.src = "https://cdn.jsdelivr.net/npm/jszip@3.2.1/dist/jszip.js";
+  document.head.append(script);
+}
+loadJSZipFromCDN();
+
+// 一括ダウンロードボタンの追加
+function addImageDownloadButton() {
+  document.body.insertAdjacentHTML(
+    "afterBegin",
+    `<button id="download">画像一括ダウンロード</button>`
+  );
+  document.getElementById("download").addEventListener("click", downloadImages);
+}
+
+// 画像の一括ダウンロード
+async function downloadImages() {
+  // 画像 URL
+  const sources = [].slice.call(
+    document.querySelectorAll("#section_banner img")
+  ).map(img => img.getAttribute("src"));
+
+  // JSZip に追加するために非同期リクエストを Promise で wrap
+  const imagePromises = sources.map(
+    (src, i) => new Promise((resolve, reject) => {
+      let xhr = new XMLHttpRequest();
+      xhr.open('GET', src, true);
+      xhr.responseType = "blob";
+      xhr.onload = function() {
+        // ファイル名とデータ返却
+        const fileName = src.slice(src.lastIndexOf("/") + 1);
+        resolve({ data: this.response, fileName: fileName });
+      };
+      // reject だと await Promise.all を抜けてしまう
+      // => resolve でデータ無し
+      xhr.onerror = () => resolve({ data: null });
+      xhr.onabort = () => resolve({ data: null });
+      xhr.ontimeout = () => resolve({ data: null });
+      xhr.send();
+    })
+  );
+
+  // すべての画像が取得できたら zip 生成
+  const images = await Promise.all(imagePromises);
+  generateImagesZip(images);
+}
+
+// zip ファイルで画像をダウンロード
+function generateImagesZip(images) {
+  let zip = new JSZip();
+
+// フォルダ作成
+  const folderName = "いらすとや バナー";
+  let folder = zip.folder(folderName);
+
+  // フォルダ下に画像を格納
+  images.forEach(image => {
+    if (image.data && image.fileName) {
+      folder.file(image.fileName, image.data)
+    }
+  });
+
+  // zip を生成
+  zip.generateAsync({ type: "blob" }).then(blob => {
+
+    // ダウンロードリンクを 生成
+    let dlLink = document.createElement("a");
+
+    // blob から URL を生成
+    const dataUrl = URL.createObjectURL(blob);
+    dlLink.href = dataUrl;
+    dlLink.download = `${folderName}.zip`;
+
+    // 設置/クリック/削除
+    document.body.insertAdjacentElement("beforeEnd", dlLink);
+    dlLink.click();
+    dlLink.remove();
+
+    // オブジェクト URL の開放
+    setTimeout(function() {
+      window.URL.revokeObjectURL(dataUrl);
+    }, 1000);
+  });
+}
+
+addImageDownloadButton();
