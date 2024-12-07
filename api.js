@@ -67,6 +67,10 @@ document.getElementById("friendName4").innerText = friend[3];
     }
 function inputM8 (){
 skillIntro[0] = document.getElementById('in1').value;
+skillEffect[0] = document.getElementById('kouka').value;
+skillMp[0] = document.getElementById('in5').value;
+skillEffectL = document.getElementById('in2').value;
+skillEffectB = document.getElementById('in4').value;
 if(document.getElementById('direction').value === "なし"){
 document.getElementById('in3').style.display = 'none';
 }else{
