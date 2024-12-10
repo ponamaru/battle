@@ -374,28 +374,28 @@ var enemyAttack = [20,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル5","スキル6",null];
 var skillE = ["消a","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
-var skillEffect = ["HP吸収","回復","敵の攻撃力ダウン","こうげき","味方の攻撃力アップ","消費mp:5",null];
+var skillEffect = ["HP吸収","回復","敵の攻撃力ダウン","敵1体にこうげき","味方の攻撃力アップ","消費mp:5",null];
 var skillMp = [5,5,5,5,5,5,null];
 var skillEffectL = [0,0,0,0];
 var skillEffectB = [20,20,20,20];
 
 var skillIntro2 = ["スキル7","スキル8","スキル9","スキル10","スキル11","スキル12",null];
 var skillE2 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
-var skillEffect2 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillEffect2 = ["敵1体にこうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp2 = [5,5,5,5,5,5,null];
 var skillEffectL2 = [0,0,0,0];
 var skillEffectB2 = [20,20,20,20];
 
 var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
 var skillE3 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
-var skillEffect3 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillEffect3 = ["敵1体にこうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp3 = [5,5,5,5,5,5,null];
 var skillEffectL3 = [0,0,0,0];
 var skillEffectB3 = [20,20,20,20];
 
 var skillIntro4 = ["スキル19","スキル20","スキル21","スキル22","スキル23","スキル24",null];
 var skillE4 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
-var skillEffect4 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillEffect4 = ["敵1体にこうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
 var skillMp4 = [5,5,5,5,5,5,null];
 var skillEffectL4 = [0,0,0,0];
 var skillEffectB4 = [20,20,20,20];
@@ -1265,7 +1265,7 @@ document.getElementById( 'select2' ).style.display = 'none';
 document.getElementById( 'select3' ).style.display = 'none'; 
 }
 }else{
-if(((attaker === 0)&&(skillEffect[decide].includes("こうげき") === true))||((attaker === 1)&&(skillEffect2[decide].includes("こうげき") === true))||((attaker === 2)&&(skillEffect3[decide].includes("こうげき") === true))||((attaker === 3)&&(skillEffect4[decide].includes("こうげき") === true))){ 
+if(((attaker === 0)&&(skillEffect[decide].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[decide].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[decide].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[decide].includes("敵1体にこうげき") === true))){ 
 if(friendMp[attaker] > 4) {
 if(attaker === 0)action[attaker] = skillIntro[decide];
 if(attaker === 1)action[attaker] = skillIntro2[decide];
@@ -1340,7 +1340,7 @@ itemE.splice( aiful,1 );
 }
 }
 if((skillIntro.includes(action[attaker]) === true)||(skillIntro2.includes(action[attaker]) === true)||(skillIntro3.includes(action[attaker]) === true)||(skillIntro4.includes(action[attaker]) === true)){
-if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("こうげき") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("こうげき") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("こうげき") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("こうげき") === true))){ 
+if(((attaker === 0)&&(skillEffect[skillIntro.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 1)&&(skillEffect2[skillIntro2.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 2)&&(skillEffect3[skillIntro3.indexOf(action[attaker])].includes("敵1体にこうげき") === true))||((attaker === 3)&&(skillEffect4[skillIntro4.indexOf(action[attaker])].includes("敵1体にこうげき") === true))){ 
 var skillLB = skillEffectL[attaker] + skillEffectB[attaker];
 random = Math.floor( Math.random() * skillLB ) + skillEffectL[attaker];
 enemyHp[enemyName.indexOf(target[attaker])] -= random;
