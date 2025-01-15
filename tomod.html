@@ -380,13 +380,32 @@ var friendAttack = [20,20,20,20];
 var enemyAttack = [20,20,20,20];
 var selectfun = 0;
 var skillIntro = ["スキル1","スキル2","スキル3","スキル4","スキル5","スキル6",null];
-var skillE = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillE = ["消a","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect = ["HP吸収","回復","敵の攻撃力ダウン","こうげき","味方の攻撃力アップ","消費mp:5",null];
+var skillMp = [5,5,5,5,5,5,null];
+var skillEffectL = [0,0,0,0];
+var skillEffectB = [20,20,20,20];
+
 var skillIntro2 = ["スキル7","スキル8","スキル9","スキル10","スキル11","スキル12",null];
-var skillE2 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillE2 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","スマホ取り上げ　mp:5",null];
+var skillEffect2 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp2 = [5,5,5,5,5,5,null];
+var skillEffectL2 = [0,0,0,0];
+var skillEffectB2 = [20,20,20,20];
+
 var skillIntro3 = ["スキル13","スキル14","スキル15","スキル16","スキル17","スキル18",null];
 var skillE3 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect3 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp3 = [5,5,5,5,5,5,null];
+var skillEffectL3 = [0,0,0,0];
+var skillEffectB3 = [20,20,20,20];
+
 var skillIntro4 = ["スキル19","スキル20","スキル21","スキル22","スキル23","スキル24",null];
 var skillE4 = ["消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5","消費mp:5",null];
+var skillEffect4 = ["こうげき","回復","HP吸収","敵の攻撃力ダウン","味方の攻撃力アップ","消費mp:5",null];
+var skillMp4 = [5,5,5,5,5,5,null];
+var skillEffectL4 = [0,0,0,0];
+var skillEffectB4 = [20,20,20,20];
 var itemIntro = ["アイテム1","アイテム2","アイテム3","アイテム4","アイテム5","アイテム6",null];
 var itemN = [3,3,2,3,3,3,null];
 var itemE = ["hpを回復","mp回復","敵1体に攻撃","効果なし","効果なし","効果なし",null];
@@ -426,7 +445,7 @@ try{
 document.getElementById( "tubuY" ).style.display = 'none';
     let response = await fetch('sample.txt');
       let data = await response.text();
-        document.getElementById( 'uhu' ).innerText = data;
+        document.getElementById( 'uhu' ).innerText = reader.result;
 	      datas = data.split('$');
  document.getElementById( 'bgmT' ).src = datas[43];
 	            enemyName = [datas[0], datas[1], datas[8], null, null, null];
@@ -590,7 +609,7 @@ audio.play();
 function damageE() {
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
 const image2 = document.getElementById(enemyId[enemyName.indexOf(target[attaker])]);
-if(enemyName.includes(action[attaker])){
+if(enemyName.includes(action[attaker]) === true){
 image.animate(
 
 	[
@@ -605,7 +624,7 @@ image.animate(
 	},
 );
 }else{
-if((itemIntro.includes(action[attaker]))||(skillIntro.includes(action[attaker]))){
+if((itemIntro.includes(action[attaker]) === true)||(skillIntro.includes(action[attaker]) === true)||(skillIntro2.includes(action[attaker]) === true)||(skillIntro3.includes(action[attaker]) === true)||(skillIntro4.includes(action[attaker]) === true)){
 image2.animate(
 
 	[
@@ -1050,12 +1069,20 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }
 }
+if(( key_code === 40 )&&(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)) {
+if(decide < Cenemy -1){ 
+    y1 += 50;
+document.getElementById( 'triangle' ).style.top = y1; 
+        decide += 1;
+}
+}
 	if(( key_code === 40 )&&(document.getElementById( 'select' ).innerText.includes(friend[0]) === true)) {
 if(decide < Cfriend - 1){ 
     y1 += 50;
 document.getElementById( 'triangle' ).style.top = y1; 
         decide += 1;
 }
+
         }
 if(selectfun === 1) {
 	if( key_code === 38 ) {
@@ -1252,6 +1279,7 @@ document.getElementById( 'triangle' ).style.top = y1;
     }
 }
 }
+
 
 
 function skillItemQTE () {
