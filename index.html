@@ -1156,39 +1156,39 @@ trun();
 }
 
 function skillItem() {
-if(action[attaker].includes("アイテム1")){ 
-if(itemIntro.includes(action[attaker])){
+if(action[attaker].includes("アイテム1")===true){ 
+if(itemIntro.includes(action[attaker])===true){
 friendHp[friend.indexOf(target[attaker])] += 10;
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 array[4] += "\n" + target[attaker] + "のhpは10回復した";
-if(!itemIntro.includes(action[attaker])){
-enemyHp[0] -= random;
+if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
+aiful = itemIntro.indexOf(action[attaker]);
+itemN.splice( aiful,1 );
+itemIntro.splice( aiful,1 );
+itemE.splice( aiful,1 );
+}
+}else{
+damageEa();
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 nulltype();
-damageEa();
-damageE();
-    }
-}else{
-enemyHp[0] -= random;
-array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 damageE();
     }
 }
-if(action[attaker].includes("アイテム2")){ 
-if(itemIntro.includes(action[attaker])){
+if(action[attaker].includes("アイテム2")===true){ 
+if(itemIntro.includes(action[attaker])===true){
 friendMp[friend.indexOf(target[attaker])] += 10;
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 array[4] += "\n" + target[attaker] + "のmpは10回復した";
-if(!itemIntro.includes(action[attaker])){
-enemyHp[0] -= random;
+if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
+aiful = itemIntro.indexOf(action[attaker]);
+itemN.splice( aiful,1 );
+itemIntro.splice( aiful,1 );
+itemE.splice( aiful,1 );
+}
+}else{
+damageEa();
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 nulltype();
-damageEa();
-damageE();
-    }
-}else{
-enemyHp[0] -= random;
-array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 damageE();
     }  
 }
@@ -1215,8 +1215,8 @@ array[4] += "\n" + target[attaker] + "は10回復した";
 friendMp[attaker] -= 5;
 
 }
-if(action[attaker].includes("アイテム3")){ 
-if(itemIntro.includes(action[attaker])){
+if(action[attaker].includes("アイテム3")===true){ 
+if(itemIntro.includes(action[attaker])===true){
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 random = Math.floor( Math.random() * 51 ) + 20;
 damageEa();
@@ -1226,14 +1226,13 @@ aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
 itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
+}
 }else{
-enemyHp[0] -= random;
+damageEa();
 array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
 nulltype();
-damageEa();
 damageE();
     }
-}
 }
     
 }
