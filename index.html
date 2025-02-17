@@ -392,7 +392,7 @@ const nC = document.getElementById("area").innerText.replace(/\\n/g, "\n");
 function damageE() {
 const image = document.getElementById(enemyId[enemyName.indexOf(action[attaker])]);
 const image2 = document.getElementById(enemyId[enemyName.indexOf(target[attaker])]);
-if(enemyName.includes(action[attaker])){
+if(enemyName.includes(action[attaker]) === true){
 image.animate(
 
 	[
@@ -407,6 +407,7 @@ image.animate(
 	},
 );
 }else{
+if((itemIntro.includes(action[attaker]) === true)||(skillIntro.includes(action[attaker]) === true)||(skillIntro2.includes(action[attaker]) === true)||(skillIntro3.includes(action[attaker]) === true)||(skillIntro4.includes(action[attaker]) === true)){
 image2.animate(
 
 	[
@@ -420,6 +421,22 @@ image2.animate(
 		direction: 'alternate'
 	},
 );
+}else{
+const image = document.getElementById(enemyId[0]);
+image.animate(
+
+	[
+		{ opacity: 1 },
+		{ opacity: 0 }
+	],
+	{
+		duration: 100,
+		easing: 'linear',
+		iterations: 4,
+		direction: 'alternate'
+	},
+);
+}
 }
 }
 
@@ -1140,26 +1157,40 @@ trun();
 
 function skillItem() {
 if(action[attaker].includes("アイテム1")){ 
+if(itemIntro.includes(action[attaker])){
 friendHp[friend.indexOf(target[attaker])] += 10;
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 array[4] += "\n" + target[attaker] + "のhpは10回復した";
-if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
-aiful = itemIntro.indexOf(action[attaker]);
-itemN.splice( aiful,1 );
-itemIntro.splice( aiful,1 );
-itemE.splice( aiful,1 );
-}
+if(!itemIntro.includes(action[attaker])){
+enemyHp[0] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
+nulltype();
+damageEa();
+damageE();
+    }
+}else{
+enemyHp[0] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
+damageE();
+    }
 }
 if(action[attaker].includes("アイテム2")){ 
+if(itemIntro.includes(action[attaker])){
 friendMp[friend.indexOf(target[attaker])] += 10;
 itemN[itemIntro.indexOf(action[attaker])] -= 1;
 array[4] += "\n" + target[attaker] + "のmpは10回復した";
-if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
-aiful = itemIntro.indexOf(action[attaker]);
-itemN.splice( aiful,1 );
-itemIntro.splice( aiful,1 );
-itemE.splice( aiful,1 );
-}
+if(!itemIntro.includes(action[attaker])){
+enemyHp[0] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
+nulltype();
+damageEa();
+damageE();
+    }
+}else{
+enemyHp[0] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
+damageE();
+    }  
 }
 if(action[attaker].includes("スキル4")){ 
 random = Math.floor( Math.random() * 51 ) + 20;
@@ -1185,6 +1216,8 @@ friendMp[attaker] -= 5;
 
 }
 if(action[attaker].includes("アイテム3")){ 
+if(itemIntro.includes(action[attaker])){
+itemN[itemIntro.indexOf(action[attaker])] -= 1;
 random = Math.floor( Math.random() * 51 ) + 20;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
@@ -1193,9 +1226,16 @@ aiful = itemIntro.indexOf(action[attaker]);
 itemN.splice( aiful,1 );
 itemIntro.splice( aiful,1 );
 itemE.splice( aiful,1 );
+}else{
+enemyHp[0] -= random;
+array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
+nulltype();
+damageEa();
+damageE();
+    }
 }
 }
-
+    
 }
 
 
