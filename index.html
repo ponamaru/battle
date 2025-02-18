@@ -459,7 +459,7 @@ enemyId.splice( aiful,1 );
     }
 }
 function carsol() {
-document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + friendMp[attaker] + "and" + action;
+document.getElementById("fun").innerText = Cfriend + "and" + attaker + "and" + selectfun + "and" + action;
 if(selectfun === 1)document.getElementById( 'cr' ).style.display = 'block';
 if(document.getElementById("area").innerText.includes(friend[3]) === true)document.getElementById( 'cr' ).src = "目.png";
 if(document.getElementById("area").innerText.includes(friend[2]) === true)document.getElementById( 'cr' ).src = "blackman_smile1.png";
@@ -501,7 +501,7 @@ aiOver = 0;
 
 if(friendHp[aiOver] < 1)friendHp[aiOver] = 0;
 if(friendMp[aiOver] < 1)friendMp[aiOver] = 0;
-if(friendHp[aiOver] > 100)friendHp[aiOver] = 50;
+if(friendHp[aiOver] > 100)friendHp[aiOver] = 100;
 if(friendMp[aiOver] > 50)friendMp[aiOver] = 50;
 
 if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
@@ -684,7 +684,14 @@ if((selectfun === 1)&&(attaker > 0)) {
 attaker -= 1;
 array[1] = friend[attaker] + "はどうする?";
 nulltype();
+if(action[attaker] === aiful4){
+itemN.splice(aiful3, 0, 0);
+itemIntro.splice(aiful3, 0, aiful4);
+itemE.splice(aiful3, 0, aiful5);
 }
+if(itemIntro.includes(action[attaker]) === true)itemN[itemIntro.indexOf(action[attaker])] += 1;
+}
+action[attaker] = null;
     if((selectfun === 2)||(selectfun === 3)||(selectfun === 4)){
                     y1 = 500;
     document.getElementById( 'triangle' ).style.top = y1;
@@ -969,9 +976,23 @@ document.getElementById( 'triangle' ).style.top = y1;
 }
 }
 
+var aiful5 = "a";
+    var aiful4 = "a";
+var aiful3 = 0;
+    
 function skillItemQTE () {
 if(selectfun === 4) {
 if((document.getElementById( 'select' ).innerText.includes(friend[0]) === true)||(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)){
+itemN[itemIntro.indexOf(action[attaker])] -= 1;
+if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
+aiful = itemIntro.indexOf(action[attaker]);
+aiful3 = itemIntro.indexOf(action[attaker]);
+aiful4 = itemIntro[itemIntro.indexOf(action[attaker])];
+aiful5 = itemE[itemIntro.indexOf(action[attaker])];
+itemN.splice( aiful,1 );
+itemIntro.splice( aiful,1 );
+itemE.splice( aiful,1 );
+}
 if(document.getElementById( 'select' ).innerText.includes(friend[0]) === true)target[attaker] = friend[decide];
 if(document.getElementById( 'select' ).innerText.includes(enemyName[0]) === true)target[attaker] = enemyName[decide];
 sc = false;         decide = 0;
@@ -1157,40 +1178,12 @@ trun();
 
 function skillItem() {
 if(action[attaker].includes("アイテム1")===true){ 
-if(itemIntro.includes(action[attaker])===true){
 friendHp[friend.indexOf(target[attaker])] += 10;
-itemN[itemIntro.indexOf(action[attaker])] -= 1;
 array[4] += "\n" + target[attaker] + "のhpは10回復した";
-if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
-aiful = itemIntro.indexOf(action[attaker]);
-itemN.splice( aiful,1 );
-itemIntro.splice( aiful,1 );
-itemE.splice( aiful,1 );
-}
-}else{
-damageEa();
-array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
-nulltype();
-damageE();
-    }
 }
 if(action[attaker].includes("アイテム2")===true){ 
-if(itemIntro.includes(action[attaker])===true){
 friendMp[friend.indexOf(target[attaker])] += 10;
-itemN[itemIntro.indexOf(action[attaker])] -= 1;
 array[4] += "\n" + target[attaker] + "のmpは10回復した";
-if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
-aiful = itemIntro.indexOf(action[attaker]);
-itemN.splice( aiful,1 );
-itemIntro.splice( aiful,1 );
-itemE.splice( aiful,1 );
-}
-}else{
-damageEa();
-array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
-nulltype();
-damageE();
-    }  
 }
 if(action[attaker].includes("スキル4")){ 
 random = Math.floor( Math.random() * 51 ) + 20;
@@ -1216,23 +1209,10 @@ friendMp[attaker] -= 5;
 
 }
 if(action[attaker].includes("アイテム3")===true){ 
-if(itemIntro.includes(action[attaker])===true){
-itemN[itemIntro.indexOf(action[attaker])] -= 1;
 random = Math.floor( Math.random() * 51 ) + 20;
 damageEa();
 array[4] += "\n" + target[attaker] + "に" + random + "ダメージ";
-if(itemN[itemIntro.indexOf(action[attaker])] < 1) {
-aiful = itemIntro.indexOf(action[attaker]);
-itemN.splice( aiful,1 );
-itemIntro.splice( aiful,1 );
-itemE.splice( aiful,1 );
-}
-}else{
-damageEa();
-array[4] = friend[attaker] + "の攻撃\n" + enemyName[0] + "に" + random + "ダメージ";
-nulltype();
-damageE();
-    }
+
 }
     
 }
