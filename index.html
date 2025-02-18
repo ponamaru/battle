@@ -504,8 +504,8 @@ if(friendMp[aiOver] < 1)friendMp[aiOver] = 0;
 if(friendHp[aiOver] > 100)friendHp[aiOver] = 100;
 if(friendMp[aiOver] > 50)friendMp[aiOver] = 50;
 
-if(selectfun === 3)document.getElementById("area").innerText = skillE[decide];
-if(selectfun === 4)document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
+if((selectfun === 3)&&(skillIntro.includes(document.getElementById( 'select' ).innerText) === true))document.getElementById("area").innerText = skillE[decide];
+if((selectfun === 4)&&(itemIntro.includes(document.getElementById( 'select' ).innerText) === true))document.getElementById("area").innerText = itemE[decide] + " 残り" + itemN[decide] + "個";
 }
 
 let intervalI = setInterval(carsol, 1);
